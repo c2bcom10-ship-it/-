@@ -1,0 +1,1182 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Word Train</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=Fredoka:wght@500;600;700&display=swap">
+<style>
+  :root {
+    --bg: #d6ecff;
+    --bg-low: #bfe0fb;
+    --surface: #ffffff;
+    --surface-2: #eef6ff;
+    --ink: #1e2b4a;
+    --ink-soft: #52618a;
+    --line: #b9cfe8;
+    --red: #e5484d;
+    --red-ink: #ffffff;
+    --robot: #3f7fd8;
+    --robot-ink: #ffffff;
+    --sun: #ffc53d;
+    --sun-ink: #3b2a00;
+    --grass: #2f9e6e;
+    --rail: #7a5a43;
+    --ice: #5cc8ff;
+    --warn: #e5484d;
+    --shadow: 0 3px 0 rgba(30, 43, 74, .18);
+    --kid: "Jua", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+    --en: "Fredoka", "Jua", ui-rounded, system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #101a33; --bg-low: #0b1327; --surface: #1b2748; --surface-2: #22315a;
+      --ink: #eaf0ff; --ink-soft: #a9b7dc; --line: #34467a;
+      --red: #ff6b6e; --red-ink: #2a0608; --robot: #6ea8ff; --robot-ink: #07152e;
+      --sun: #ffd166; --sun-ink: #2e2100; --grass: #5ccb97; --rail: #b08a6e; --ice: #7fd6ff; --warn: #ff6b6e;
+      --shadow: 0 3px 0 rgba(0, 0, 0, .35);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #101a33; --bg-low: #0b1327; --surface: #1b2748; --surface-2: #22315a;
+    --ink: #eaf0ff; --ink-soft: #a9b7dc; --line: #34467a;
+    --red: #ff6b6e; --red-ink: #2a0608; --robot: #6ea8ff; --robot-ink: #07152e;
+    --sun: #ffd166; --sun-ink: #2e2100; --grass: #5ccb97; --rail: #b08a6e; --ice: #7fd6ff; --warn: #ff6b6e;
+    --shadow: 0 3px 0 rgba(0, 0, 0, .35);
+  }
+
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--kid);
+    font-size: 17px;
+    line-height: 1.5;
+    padding-inline: 16px;
+  }
+  .app { max-width: 560px; margin: 0 auto; padding-block: 16px 40px; display: grid; gap: 18px; }
+  [hidden] { display: none !important; }
+  .screen { display: grid; gap: 18px; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  button:focus-visible, input:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+  button:disabled { cursor: not-allowed; opacity: .45; }
+  h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
+
+  /* ---------- 시작 화면 ---------- */
+  .brand { display: grid; gap: 4px; text-align: left; }
+  .brand h1 { font-family: var(--en); font-weight: 700; font-size: 44px; line-height: 1; letter-spacing: -.5px; }
+  .brand h1 span { color: var(--red); }
+  .brand p { margin: 0; color: var(--ink-soft); }
+
+  .panel { background: var(--surface); border-radius: 22px; padding: 18px; box-shadow: var(--shadow); display: grid; gap: 14px; }
+  .panel h2 { font-size: 22px; }
+  .hint-text { margin: 0; color: var(--ink-soft); font-size: 15px; }
+
+  .grades { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  @media (max-width: 440px) { .grades { grid-template-columns: repeat(2, 1fr); } }
+  .grade {
+    border: 3px solid var(--line); background: var(--surface-2); border-radius: 18px;
+    padding: 12px 10px; display: grid; gap: 2px; justify-items: start; text-align: left;
+  }
+  .grade .ico { font-size: 30px; line-height: 1.1; }
+  .grade .gnum { font-size: 20px; }
+  .grade .gname { font-size: 14px; color: var(--ink-soft); }
+  .grade .gex { font-family: var(--en); font-size: 13px; color: var(--ink-soft); }
+  .grade .gbest { font-size: 12px; color: var(--grass); min-height: 18px; }
+  .grade[aria-pressed="true"] { border-color: var(--red); background: var(--surface); box-shadow: 0 0 0 3px color-mix(in srgb, var(--red) 25%, transparent); }
+
+  .seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .seg button { border: 3px solid var(--line); background: var(--surface-2); border-radius: 14px; padding: 10px 6px; font-size: 16px; }
+  .seg button[aria-pressed="true"] { border-color: var(--robot); background: var(--surface); }
+
+  .go {
+    border: 0; border-radius: 20px; background: var(--red); color: var(--red-ink);
+    font-size: 26px; padding: 16px; box-shadow: 0 5px 0 color-mix(in srgb, var(--red) 55%, #000);
+    transition: transform .08s;
+  }
+  .go:active { transform: translateY(3px); box-shadow: 0 2px 0 color-mix(in srgb, var(--red) 55%, #000); }
+
+  .rules { margin: 0; padding-left: 20px; display: grid; gap: 4px; font-size: 15px; color: var(--ink-soft); }
+  .rules b { color: var(--ink); font-weight: 400; }
+
+  /* ---------- 기차 ---------- */
+  .track-wrap { position: relative; overflow-x: auto; overflow-y: hidden; scroll-behavior: smooth; padding-bottom: 6px; }
+  .track {
+    display: flex; align-items: flex-end; gap: 6px; padding: 8px 4px 16px; width: max-content; min-width: 100%;
+    background:
+      linear-gradient(var(--rail), var(--rail)) left bottom 6px / 100% 3px no-repeat,
+      repeating-linear-gradient(90deg, var(--rail) 0 6px, transparent 6px 22px) left bottom 0 / 100% 12px no-repeat;
+  }
+  .loco { font-size: 44px; line-height: 1; transform: scaleX(-1); padding-bottom: 6px; }
+  .car {
+    position: relative; min-width: 74px; padding: 6px 10px 10px; border-radius: 12px 12px 6px 6px;
+    display: grid; justify-items: center; gap: 0; margin-bottom: 10px;
+    background: var(--red); color: var(--red-ink);
+    animation: roll-in .35s ease-out;
+  }
+  .car.robot { background: var(--robot); color: var(--robot-ink); }
+  .car::before, .car::after {
+    content: ""; position: absolute; bottom: -10px; width: 16px; height: 16px; border-radius: 50%;
+    background: var(--ink); border: 3px solid var(--surface);
+  }
+  .car::before { left: 10px; } .car::after { right: 10px; }
+  .car .em { font-size: 24px; line-height: 1.2; }
+  .car .w { font-family: var(--en); font-weight: 600; font-size: 18px; line-height: 1.1; }
+  .car .w b { font-weight: 700; background: var(--sun); color: var(--sun-ink); border-radius: 5px; padding: 0 3px; margin-left: 1px; }
+  .car .who { font-size: 11px; opacity: .85; }
+  .station { font-size: 13px; color: var(--ink-soft); display: grid; justify-items: center; margin-bottom: 14px; padding: 0 4px; }
+  .station span { font-size: 26px; }
+  @keyframes roll-in { from { transform: translateX(40px); opacity: .2; } to { transform: none; opacity: 1; } }
+
+  .demo .track-wrap { overflow: hidden; }
+  .demo .car { animation: none; }
+
+  /* ---------- 게임 화면 ---------- */
+  .topbar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .icon-btn { border: 0; background: var(--surface); border-radius: 12px; width: 44px; height: 44px; font-size: 20px; box-shadow: var(--shadow); flex: none; }
+  .scoreboard { flex: 1; display: flex; justify-content: space-between; align-items: center; gap: 8px; background: var(--surface); border-radius: 14px; padding: 6px 12px; box-shadow: var(--shadow); min-width: 0; }
+  .side { display: grid; line-height: 1.15; font-size: 13px; color: var(--ink-soft); }
+  .side .hearts { font-size: 17px; letter-spacing: 1px; }
+  .side.r { text-align: right; }
+  .score { font-family: var(--en); font-weight: 700; font-size: 26px; font-variant-numeric: tabular-nums; text-align: center; line-height: 1; }
+  .score small { display: block; font-family: var(--kid); font-weight: 400; font-size: 12px; color: var(--ink-soft); }
+
+  .timer { height: 14px; border-radius: 999px; background: var(--surface); overflow: hidden; box-shadow: inset 0 0 0 2px var(--line); }
+  .timer i { display: block; height: 100%; width: 100%; background: var(--grass); border-radius: 999px; transition: width .1s linear, background .2s; }
+  .timer.low i { background: var(--warn); }
+  .timer.frozen i { background: var(--ice); }
+  .timer-row { display: flex; align-items: center; gap: 10px; }
+  .timer-row .timer { flex: 1; }
+  .secs { font-family: var(--en); font-weight: 600; font-variant-numeric: tabular-nums; min-width: 3.2em; text-align: right; }
+
+  .play { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center; }
+  .letter-tile {
+    width: 96px; height: 96px; border-radius: 22px; background: var(--sun); color: var(--sun-ink);
+    display: grid; place-items: center; font-family: var(--en); font-weight: 700; font-size: 62px; line-height: 1;
+    box-shadow: 0 5px 0 color-mix(in srgb, var(--sun) 55%, #000); position: relative;
+  }
+  .letter-tile small { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); font-family: var(--kid); font-weight: 400; font-size: 13px; background: var(--ink); color: var(--surface); border-radius: 999px; padding: 1px 10px; white-space: nowrap; }
+  .letter-tile.wait { background: var(--surface-2); color: var(--ink-soft); box-shadow: var(--shadow); }
+  .bubble { background: var(--surface); border-radius: 18px; padding: 12px 14px; box-shadow: var(--shadow); min-height: 72px; display: grid; align-content: center; gap: 2px; font-size: 17px; }
+  .bubble .sub { font-size: 14px; color: var(--ink-soft); }
+  .bubble .en { font-family: var(--en); font-weight: 600; }
+  .bubble.bad { animation: shake .35s; }
+  @keyframes shake { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+
+  .answer { display: grid; gap: 10px; }
+  .typed {
+    min-height: 60px; border-radius: 16px; background: var(--surface); box-shadow: inset 0 0 0 3px var(--line);
+    display: flex; align-items: center; padding: 0 16px; font-family: var(--en); font-weight: 600; font-size: 34px; letter-spacing: 2px;
+  }
+  .typed .fixed { color: var(--red); }
+  .typed .caret { display: inline-block; width: 3px; height: 34px; background: var(--ink); margin-left: 3px; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .keypad { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+  .key {
+    border: 0; border-radius: 12px; background: var(--surface); box-shadow: var(--shadow);
+    font-family: var(--en); font-weight: 600; font-size: 22px; padding: 9px 0; min-height: 46px;
+  }
+  .key:active { transform: translateY(2px); box-shadow: none; }
+  .key.wide { grid-column: span 2; font-family: var(--kid); font-weight: 400; font-size: 18px; }
+  .key.ok { grid-column: 1 / -1; background: var(--grass); color: #fff; }
+  .text-row { display: flex; gap: 8px; }
+  .text-row input {
+    flex: 1; min-width: 0; border: 0; border-radius: 16px; background: var(--surface); box-shadow: inset 0 0 0 3px var(--line);
+    padding: 12px 16px; font-family: var(--en); font-weight: 600; font-size: 28px; color: var(--ink);
+  }
+  .text-row button { border: 0; border-radius: 16px; background: var(--grass); color: #fff; font-size: 20px; padding: 0 18px; }
+
+  .items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .item {
+    border: 3px solid var(--line); background: var(--surface); border-radius: 16px; padding: 8px 4px;
+    display: grid; justify-items: center; gap: 0; position: relative;
+  }
+  .item .ie { font-size: 26px; line-height: 1.2; }
+  .item .il { font-size: 14px; }
+  .item .ic { position: absolute; top: -8px; right: -6px; background: var(--red); color: var(--red-ink); border-radius: 999px; font-size: 12px; min-width: 22px; padding: 1px 6px; font-family: var(--en); font-weight: 600; }
+  .item.on { border-color: var(--sun); background: color-mix(in srgb, var(--sun) 22%, var(--surface)); }
+  .pass { justify-self: center; border: 0; background: transparent; color: var(--ink-soft); font-size: 15px; text-decoration: underline; text-underline-offset: 3px; padding: 6px 10px; }
+
+  /* ---------- 결과 화면 ---------- */
+  .result-head { text-align: center; display: grid; gap: 6px; justify-items: center; }
+  .result-head .big { font-size: 64px; line-height: 1; }
+  .result-head h2 { font-size: 32px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .stat { background: var(--surface-2); border-radius: 16px; padding: 10px; text-align: center; }
+  .stat b { display: block; font-family: var(--en); font-weight: 700; font-size: 28px; font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .stat span { font-size: 13px; color: var(--ink-soft); }
+  .newbest { text-align: center; color: var(--grass); margin: 0; }
+  .wordlist { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .wordlist li { display: grid; grid-template-columns: 36px 1fr auto; align-items: center; gap: 8px; background: var(--surface-2); border-radius: 12px; padding: 6px 8px; }
+  .wordlist .em { font-size: 24px; text-align: center; }
+  .wordlist .en { font-family: var(--en); font-weight: 600; font-size: 19px; }
+  .wordlist .ko { font-size: 14px; color: var(--ink-soft); }
+  .wordlist button { border: 0; background: var(--surface); border-radius: 10px; width: 40px; height: 36px; font-size: 18px; }
+  .row-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .ghost { border: 3px solid var(--line); background: var(--surface); border-radius: 18px; font-size: 20px; padding: 12px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .track-wrap { scroll-behavior: auto; }
+  }
+</style>
+
+<div class="app">
+
+  <!-- ===== 시작 화면 ===== -->
+  <section id="home" class="screen">
+    <header class="brand">
+      <h1>Word <span>Train</span></h1>
+      <p>워드 트레인 · 영어 끝말잇기 기차 놀이</p>
+    </header>
+
+    <div class="panel demo">
+      <div class="track-wrap" aria-hidden="true">
+        <div class="track" id="demoTrack"></div>
+      </div>
+      <p class="hint-text">앞 단어의 <b>마지막 글자</b>로 시작하는 단어를 이어요. 단어 하나가 기차 한 칸!</p>
+    </div>
+
+    <div class="panel">
+      <h2>몇 학년이에요?</h2>
+      <div class="grades" id="grades"></div>
+    </div>
+
+    <div class="panel">
+      <h2>로봇 실력</h2>
+      <div class="seg" id="levels">
+        <button type="button" data-level="easy">😊 쉬움</button>
+        <button type="button" data-level="normal">🙂 보통</button>
+        <button type="button" data-level="hard">😎 어려움</button>
+      </div>
+      <ul class="rules">
+        <li>하트는 <b>나 3개, 로봇 3개</b>. 로봇 하트를 먼저 없애면 이겨요!</li>
+        <li>시간 안에 못 쓰면 내 하트가 하나 줄어요.</li>
+        <li>철자가 틀리면 벌칙 없이 <b>다시 쓸 수 있어요.</b></li>
+        <li>내 학년보다 어려운 단어를 쓰면 <b>보너스 점수</b>!</li>
+      </ul>
+    </div>
+
+    <button type="button" class="go" id="startBtn">🚂 출발!</button>
+  </section>
+
+  <!-- ===== 게임 화면 ===== -->
+  <section id="game" class="screen" hidden>
+    <div class="topbar">
+      <button type="button" class="icon-btn" id="quitBtn" aria-label="그만하고 처음으로">✕</button>
+      <div class="scoreboard">
+        <div class="side"><span>나</span><span class="hearts" id="myHearts"></span></div>
+        <div class="score"><span id="score">0</span><small>점수</small></div>
+        <div class="side r"><span>🤖 로봇</span><span class="hearts" id="robotHearts"></span></div>
+      </div>
+      <button type="button" class="icon-btn" id="soundBtn" aria-label="소리 켜기/끄기">🔊</button>
+    </div>
+
+    <div class="track-wrap" id="trackWrap">
+      <div class="track" id="track"></div>
+    </div>
+
+    <div class="timer-row">
+      <div class="timer" id="timer"><i id="timerBar"></i></div>
+      <span class="secs" id="secs">0초</span>
+    </div>
+
+    <div class="play">
+      <div class="letter-tile" id="letterTile"><small>다음 글자</small><span id="letter">?</span></div>
+      <div class="bubble" id="bubble" aria-live="polite"></div>
+    </div>
+
+    <div class="answer">
+      <div id="keypadMode" hidden>
+        <div class="typed" id="typed" aria-live="polite"></div>
+        <div class="keypad" id="keypad" style="margin-top:10px"></div>
+      </div>
+      <form class="text-row" id="textMode" hidden autocomplete="off">
+        <input id="answerInput" type="text" inputmode="latin" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="영어 단어 쓰기" aria-label="영어 단어 입력">
+        <button type="submit">확인</button>
+      </form>
+    </div>
+
+    <div class="items">
+      <button type="button" class="item" data-item="hint"><span class="ie">💡</span><span class="il">반짝 전구</span><span class="ic">1</span></button>
+      <button type="button" class="item" data-item="freeze"><span class="ie">🧊</span><span class="il">얼음 시계</span><span class="ic">1</span></button>
+      <button type="button" class="item" data-item="shield"><span class="ie">🛡️</span><span class="il">튼튼 방패</span><span class="ic">1</span></button>
+    </div>
+    <button type="button" class="pass" id="passBtn">모르겠어요, 넘어갈래요 😅</button>
+  </section>
+
+  <!-- ===== 결과 화면 ===== -->
+  <section id="result" class="screen" hidden>
+    <div class="panel">
+      <div class="result-head">
+        <div class="big" id="resEmoji">🎉</div>
+        <h2 id="resTitle">이겼어요!</h2>
+        <p class="hint-text" id="resSub"></p>
+      </div>
+      <div class="stats">
+        <div class="stat"><b id="resCars">0</b><span>기차 칸</span></div>
+        <div class="stat"><b id="resWords">0</b><span>내가 쓴 단어</span></div>
+        <div class="stat"><b id="resScore">0</b><span>점수</span></div>
+      </div>
+      <p class="newbest" id="resBest"></p>
+    </div>
+    <div class="panel">
+      <h2>오늘 만난 단어</h2>
+      <p class="hint-text">🔊 버튼을 누르면 발음을 들을 수 있어요.</p>
+      <ul class="wordlist" id="resList"></ul>
+    </div>
+    <div class="row-btns">
+      <button type="button" class="ghost" id="homeBtn">학년 바꾸기</button>
+      <button type="button" class="go" id="againBtn">다시 하기</button>
+    </div>
+  </section>
+
+</div>
+
+<script>
+/* ============================================================
+   단어장: 한 줄에 "영어단어|뜻|그림" 형식
+   학년 숫자 아래에 단어를 추가하면 게임에 바로 들어가요.
+   ============================================================ */
+const RAW = {
+1: `cat|고양이|🐱
+dog|개|🐶
+pig|돼지|🐷
+cow|소|🐮
+hen|암탉|🐔
+fox|여우|🦊
+bee|벌|🐝
+ant|개미|🐜
+owl|부엉이|🦉
+bat|박쥐|🦇
+rat|쥐|🐀
+yak|야크|🐃
+elk|엘크|🦌
+egg|달걀|🥚
+jam|잼|🍯
+ham|햄|🍖
+pie|파이|🥧
+tea|차|🍵
+nut|견과|🥜
+fig|무화과|🫐
+sun|해|☀️
+sky|하늘|🌤️
+map|지도|🗺️
+cap|모자|🧢
+hat|모자|🎩
+bag|가방|🎒
+box|상자|📦
+bus|버스|🚌
+car|자동차|🚗
+van|승합차|🚐
+jet|제트기|✈️
+cup|컵|🥤
+pen|펜|🖊️
+bed|침대|🛏️
+toy|장난감|🧸
+net|그물|🥅
+key|열쇠|🔑
+leg|다리|🦵
+arm|팔|💪
+ear|귀|👂
+eye|눈|👁️
+lip|입술|👄
+mom|엄마|👩
+dad|아빠|👨
+boy|소년|👦
+kid|아이|🧒
+red|빨강|🔴
+one|하나|1️⃣
+two|둘|2️⃣
+six|여섯|6️⃣
+ten|열|🔟
+run|달리다|🏃
+sit|앉다|🪑
+zoo|동물원|🦁
+zip|지퍼|🤐
+web|거미줄|🕸️
+wet|젖은|💦
+win|이기다|🏆
+gum|껌|🍬
+ice|얼음|🧊
+ink|잉크|🖋️
+oil|기름|🛢️
+log|통나무|🪵
+mug|머그잔|☕
+tub|욕조|🛁
+yes|네|👍
+top|꼭대기|🔝
+hot|뜨거운|🔥
+big|큰|🐘
+fan|선풍기|🌀
+dot|점|⚫
+nap|낮잠|😴
+vet|수의사|🩺
+up|위로|⬆️`,
+2: `bear|곰|🐻
+lion|사자|🦁
+frog|개구리|🐸
+duck|오리|🦆
+fish|물고기|🐟
+goat|염소|🐐
+deer|사슴|🦌
+bird|새|🐦
+wolf|늑대|🐺
+milk|우유|🥛
+cake|케이크|🍰
+rice|밥|🍚
+corn|옥수수|🌽
+pear|배|🍐
+kiwi|키위|🥝
+book|책|📖
+desk|책상|🗄️
+door|문|🚪
+ball|공|⚽
+doll|인형|🪆
+kite|연|🪁
+ship|배|🚢
+boat|보트|⛵
+bike|자전거|🚲
+taxi|택시|🚕
+tent|텐트|⛺
+tree|나무|🌳
+rain|비|🌧️
+snow|눈|❄️
+wind|바람|💨
+moon|달|🌙
+star|별|⭐
+hill|언덕|⛰️
+nest|둥지|🪺
+rose|장미|🌹
+hand|손|✋
+foot|발|🦶
+nose|코|👃
+face|얼굴|🙂
+blue|파랑|🔵
+pink|분홍|🩷
+gold|금|🥇
+zero|영|0️⃣
+four|넷|4️⃣
+five|다섯|5️⃣
+nine|아홉|9️⃣
+home|집|🏠
+park|공원|🏞️
+road|길|🛣️
+sing|노래하다|🎤
+swim|수영하다|🏊
+jump|뛰다|🦘
+walk|걷다|🚶
+read|읽다|📚
+love|사랑|❤️
+baby|아기|👶
+king|왕|🤴
+quiz|퀴즈|❓
+year|해·년|📅
+vase|꽃병|🏺
+east|동쪽|🧭
+easy|쉬운|👌
+open|열다|📂
+oven|오븐|🔥
+idea|생각|💡
+iron|다리미|👕
+lamp|등|🪔
+gift|선물|🎁
+game|게임|🎮
+mask|가면|🎭
+yard|마당|🏡
+exit|출구|🚪
+under|아래에|⬇️`,
+3: `apple|사과|🍎
+lemon|레몬|🍋
+grape|포도|🍇
+melon|멜론|🍈
+peach|복숭아|🍑
+bread|빵|🍞
+pizza|피자|🍕
+candy|사탕|🍬
+juice|주스|🧃
+water|물|💧
+lunch|점심|🍱
+onion|양파|🧅
+tiger|호랑이|🐯
+zebra|얼룩말|🦓
+horse|말|🐴
+sheep|양|🐑
+mouse|쥐|🐭
+snake|뱀|🐍
+shark|상어|🦈
+whale|고래|🐋
+eagle|독수리|🦅
+koala|코알라|🐨
+panda|판다|🐼
+camel|낙타|🐫
+clock|시계|🕰️
+chair|의자|🪑
+table|탁자|🍽️
+phone|전화|📱
+piano|피아노|🎹
+robot|로봇|🤖
+house|집|🏠
+train|기차|🚆
+truck|트럭|🚚
+ruler|자|📏
+knife|칼|🔪
+cloud|구름|☁️
+ocean|바다|🌊
+night|밤|🌃
+north|북쪽|🧭
+green|초록|🟢
+white|하양|⚪
+black|검정|⚫
+brown|갈색|🟤
+three|셋|3️⃣
+seven|일곱|7️⃣
+eight|여덟|8️⃣
+happy|행복한|😊
+angry|화난|😠
+dance|춤추다|💃
+sleep|자다|😴
+smile|웃다|😄
+write|쓰다|✍️
+dream|꿈|💭
+music|음악|🎵
+money|돈|💰
+queen|여왕|👸
+uncle|삼촌|👨
+yacht|요트|⛵
+yummy|맛있는|😋
+fruit|과일|🍓
+video|비디오|📼`,
+4: `orange|오렌지|🍊
+banana|바나나|🍌
+cherry|체리|🍒
+carrot|당근|🥕
+potato|감자|🥔
+tomato|토마토|🍅
+cookie|쿠키|🍪
+cheese|치즈|🧀
+butter|버터|🧈
+rabbit|토끼|🐰
+monkey|원숭이|🐵
+turtle|거북이|🐢
+parrot|앵무새|🦜
+spider|거미|🕷️
+dragon|용|🐉
+insect|곤충|🐞
+school|학교|🏫
+pencil|연필|✏️
+eraser|지우개|🧽
+crayon|크레용|🖍️
+letter|편지|✉️
+flower|꽃|🌸
+garden|정원|🏡
+window|창문|🪟
+basket|바구니|🧺
+rocket|로켓|🚀
+jacket|재킷|🧥
+sister|자매|👧
+mother|어머니|👩
+father|아버지|👨
+friend|친구|🧑‍🤝‍🧑
+doctor|의사|🧑‍⚕️
+farmer|농부|🧑‍🌾
+nurse|간호사|🩺
+spring|봄|🌷
+summer|여름|🏖️
+winter|겨울|⛄
+autumn|가을|🍂
+cloudy|흐린|⛅
+sunny|맑은|🌞
+rainy|비 오는|☔
+violin|바이올린|🎻
+guitar|기타|🎸
+soccer|축구|⚽
+tennis|테니스|🎾
+island|섬|🏝️
+yellow|노랑|🟡
+yogurt|요구르트|🥣
+hello|안녕|👋
+listen|듣다|👂
+kitten|새끼 고양이|🐈
+circle|동그라미|⭕
+square|네모|🟥
+number|숫자|🔢`,
+5: `weather|날씨|🌦️
+holiday|휴일|🏖️
+library|도서관|📚
+kitchen|부엌|🍳
+bedroom|침실|🛏️
+museum|박물관|🏛️
+market|시장|🛒
+airport|공항|🛫
+bicycle|자전거|🚲
+subway|지하철|🚇
+teacher|선생님|🧑‍🏫
+student|학생|🧑‍🎓
+singer|가수|🎤
+dentist|치과의사|🦷
+police|경찰|👮
+chicken|닭|🐔
+giraffe|기린|🦒
+penguin|펭귄|🐧
+dolphin|돌고래|🐬
+octopus|문어|🐙
+noodle|국수|🍜
+salad|샐러드|🥗
+family|가족|👨‍👩‍👧
+brother|형제|👦
+uniform|교복|👔
+umbrella|우산|☂️
+excited|신난|🤩
+nervous|긴장한|😬
+tired|피곤한|🥱
+hungry|배고픈|🤤
+science|과학|🔬
+history|역사|📜
+quiet|조용한|🤫
+quick|빠른|⚡
+visit|방문하다|🧳
+travel|여행하다|🌍
+young|어린|🧒
+zipper|지퍼|🤐
+gloves|장갑|🧤
+jungle|정글|🌴
+ticket|표|🎫
+rainbow|무지개|🌈
+thunder|천둥|⚡
+answer|대답|🙋
+english|영어|🔤
+favorite|가장 좋아하는|💖
+picture|그림|🖼️
+village|마을|🏘️`,
+6: `adventure|모험|🧭
+festival|축제|🎉
+elephant|코끼리|🐘
+hospital|병원|🏥
+sandwich|샌드위치|🥪
+hamburger|햄버거|🍔
+spaghetti|스파게티|🍝
+strawberry|딸기|🍓
+pineapple|파인애플|🍍
+watermelon|수박|🍉
+butterfly|나비|🦋
+crocodile|악어|🐊
+kangaroo|캥거루|🦘
+dinosaur|공룡|🦕
+astronaut|우주비행사|🧑‍🚀
+scientist|과학자|🧑‍🔬
+firefighter|소방관|🧑‍🚒
+engineer|기술자|🛠️
+musician|음악가|🎼
+volunteer|자원봉사자|🙋
+birthday|생일|🎂
+christmas|크리스마스|🎄
+yesterday|어제|⏪
+tomorrow|내일|⏩
+weekend|주말|📆
+exercise|운동|🏋️
+delicious|맛있는|😋
+beautiful|아름다운|✨
+wonderful|멋진|🌟
+dangerous|위험한|⚠️
+different|다른|🔀
+important|중요한|❗
+interesting|재미있는|🤓
+environment|환경|🌍
+recycle|재활용하다|♻️
+planet|행성|🪐
+universe|우주|🌌
+mountain|산|🏔️
+desert|사막|🏜️
+volcano|화산|🌋
+tornado|토네이도|🌪️
+xylophone|실로폰|🎶
+zucchini|애호박|🥒
+question|질문|❓
+orchestra|오케스트라|🎻
+nature|자연|🌿
+internet|인터넷|🌐
+language|언어|🗣️
+theater|극장|🎭
+restaurant|식당|🍽️
+breakfast|아침 식사|🍳
+lightning|번개|🌩️
+keyboard|키보드|⌨️
+journey|여행|🧳
+treasure|보물|💎
+ugly|못생긴|👹`
+};
+
+const GRADES = [
+  { g: 1, name: '알 단계',     icon: '🥚', time: 30, keypad: true,  ex: 'cat · egg · sun' },
+  { g: 2, name: '병아리 단계', icon: '🐣', time: 25, keypad: true,  ex: 'bear · milk · fish' },
+  { g: 3, name: '아기새 단계', icon: '🐥', time: 20, keypad: false, ex: 'apple · tiger' },
+  { g: 4, name: '파랑새 단계', icon: '🐦', time: 20, keypad: false, ex: 'rabbit · school' },
+  { g: 5, name: '독수리 단계', icon: '🦅', time: 15, keypad: false, ex: 'weather · library' },
+  { g: 6, name: '드래곤 단계', icon: '🐉', time: 15, keypad: false, ex: 'adventure · festival' },
+];
+
+/* ---------- 단어장 준비 ---------- */
+const DICT = {};
+const BY_GRADE = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
+for (const g of [1, 2, 3, 4, 5, 6]) {
+  RAW[g].trim().split('\n').forEach(line => {
+    const [w, m, e] = line.split('|').map(s => (s || '').trim());
+    if (!w || DICT[w]) return;
+    const o = { word: w.toLowerCase(), meaning: m, emoji: e || '🔤', grade: g };
+    DICT[o.word] = o;
+    BY_GRADE[g].push(o);
+  });
+}
+
+/* ---------- 작은 도구들 ---------- */
+const $ = s => document.querySelector(s);
+const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+const heartStr = n => '❤️'.repeat(Math.max(0, n)) + '🤍'.repeat(Math.max(0, 3 - n));
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+let soundOn = store.get('wt.sound', true);
+let audioCtx = null;
+function tone(freqs, dur = 0.12, type = 'sine', vol = 0.14) {
+  if (!soundOn) return;
+  try {
+    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    let t = audioCtx.currentTime;
+    freqs.forEach(f => {
+      const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+      o.type = type; o.frequency.value = f;
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(vol, t + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      o.connect(g).connect(audioCtx.destination);
+      o.start(t); o.stop(t + dur + 0.02);
+      t += dur * 0.8;
+    });
+  } catch (e) {}
+}
+const sfx = {
+  good: () => tone([523, 659, 784], 0.11),
+  bad: () => tone([240, 190], 0.14, 'triangle', 0.12),
+  robot: () => tone([392, 330], 0.09, 'square', 0.05),
+  win: () => tone([523, 659, 784, 1047], 0.14),
+  item: () => tone([880, 1175], 0.08),
+};
+function speak(word) {
+  if (!soundOn || !('speechSynthesis' in window)) return;
+  try {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(word);
+    u.lang = 'en-US'; u.rate = 0.85;
+    speechSynthesis.speak(u);
+  } catch (e) {}
+}
+
+/* ---------- 기차 칸 만들기 ---------- */
+function carEl(entry, who) {
+  const d = document.createElement('div');
+  d.className = 'car' + (who === 'robot' ? ' robot' : '');
+  const w = entry.word;
+  d.innerHTML = `<span class="em">${entry.emoji}</span>
+    <span class="w">${esc(w.slice(0, -1))}<b>${esc(w.slice(-1))}</b></span>
+    <span class="who">${who === 'robot' ? '로봇' : '나'}</span>`;
+  return d;
+}
+function locoEl() {
+  const d = document.createElement('div');
+  d.className = 'loco'; d.textContent = '🚂';
+  return d;
+}
+
+/* 시작 화면 예시 기차 */
+(function demo() {
+  const t = $('#demoTrack');
+  t.append(locoEl());
+  [['apple', 'robot'], ['egg', 'me'], ['goat', 'robot'], ['tiger', 'me']].forEach(([w, who]) => t.append(carEl(DICT[w], who)));
+})();
+
+/* ---------- 시작 화면 ---------- */
+let selGrade = store.get('wt.grade', 1);
+let selLevel = store.get('wt.level', 'easy');
+const bests = store.get('wt.best', {});
+
+function renderHome() {
+  $('#grades').innerHTML = GRADES.map(G => `
+    <button type="button" class="grade" data-g="${G.g}" aria-pressed="${G.g === selGrade}">
+      <span class="ico">${G.icon}</span>
+      <span class="gnum">${G.g}학년</span>
+      <span class="gname">${G.name}</span>
+      <span class="gex">${G.ex}</span>
+      <span class="gbest">${bests[G.g] ? '🏆 최고 ' + bests[G.g] + '점' : ''}</span>
+    </button>`).join('');
+  document.querySelectorAll('#levels button').forEach(b => b.setAttribute('aria-pressed', b.dataset.level === selLevel));
+}
+$('#grades').addEventListener('click', e => {
+  const b = e.target.closest('.grade'); if (!b) return;
+  selGrade = +b.dataset.g; store.set('wt.grade', selGrade); renderHome();
+});
+$('#levels').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  selLevel = b.dataset.level; store.set('wt.level', selLevel); renderHome();
+});
+renderHome();
+
+function show(id) {
+  ['home', 'game', 'result'].forEach(s => { $('#' + s).hidden = s !== id; });
+  window.scrollTo(0, 0);
+}
+
+/* ---------- 게임 상태 ---------- */
+let S = null;
+let tickHandle = null;
+
+function newGame() {
+  const G = GRADES[selGrade - 1];
+  const pool = Object.values(DICT).filter(o => o.grade <= G.g);
+  S = {
+    G, pool, level: selLevel,
+    used: new Set(), hearts: 3, robotHearts: 3, score: 0,
+    turn: 'robot', letter: null, remaining: G.time * 1000, frozenUntil: 0,
+    shield: false, items: { hint: 1, freeze: 1, shield: 1 },
+    cars: 0, myWords: [], typed: '', over: false, timers: [],
+  };
+  $('#track').innerHTML = '';
+  $('#track').append(locoEl());
+  $('#keypadMode').hidden = !G.keypad;
+  $('#textMode').hidden = G.keypad;
+  $('#answerInput').value = '';
+  renderStatus(); renderItems(); renderTyped(); setTimer();
+  show('game');
+  clearInterval(tickHandle);
+  let last = performance.now();
+  tickHandle = setInterval(() => {
+    const now = performance.now(), dt = now - last; last = now;
+    if (!S || S.over || S.turn !== 'player') return;
+    if (Date.now() < S.frozenUntil) { setTimer(); return; }
+    S.remaining -= dt;
+    setTimer();
+    if (S.remaining <= 0) playerFail('time');
+  }, 100);
+  later(() => robotStartsNewTrain(true), 500);
+}
+
+function later(fn, ms) {
+  const h = setTimeout(() => { if (S && !S.over) fn(); }, ms);
+  S.timers.push(h);
+}
+function stopGame() {
+  if (!S) return;
+  S.over = true;
+  S.timers.forEach(clearTimeout);
+  clearInterval(tickHandle);
+  try { speechSynthesis.cancel(); } catch (e) {}
+}
+
+/* 아직 안 나온 단어들의 첫 글자 모음 */
+function startLetters() {
+  const set = new Set();
+  S.pool.forEach(o => { if (!S.used.has(o.word)) set.add(o.word[0]); });
+  return set;
+}
+function countStarting(letter, except) {
+  let n = 0;
+  S.pool.forEach(o => { if (o.word[0] === letter && !S.used.has(o.word) && o.word !== except) n++; });
+  return n;
+}
+/* 다음 글자 정하기: 끝 글자로 시작하는 단어가 없으면 한 칸씩 앞 글자로 */
+function nextLetterFor(word) {
+  const starts = startLetters();
+  const last = word[word.length - 1];
+  for (let i = word.length - 1; i >= 0; i--) {
+    if (starts.has(word[i])) return { letter: word[i], shifted: i !== word.length - 1, from: last };
+  }
+  const arr = [...starts];
+  if (!arr.length) return null;
+  return { letter: pick(arr), shifted: true, from: last };
+}
+
+/* ---------- 화면 갱신 ---------- */
+function renderStatus() {
+  $('#myHearts').textContent = heartStr(S.hearts);
+  $('#robotHearts').textContent = heartStr(S.robotHearts);
+  $('#score').textContent = S.score;
+  $('#soundBtn').textContent = soundOn ? '🔊' : '🔇';
+}
+function renderItems() {
+  document.querySelectorAll('.item').forEach(b => {
+    const k = b.dataset.item;
+    b.querySelector('.ic').textContent = S.items[k];
+    b.classList.toggle('on', k === 'shield' && S.shield);
+    b.disabled = S.items[k] <= 0 || S.turn !== 'player' || S.over;
+  });
+  $('#passBtn').disabled = S.turn !== 'player' || S.over;
+}
+function setTimer() {
+  const total = S.G.time * 1000;
+  const r = Math.max(0, S.remaining);
+  const frozen = Date.now() < S.frozenUntil;
+  $('#timerBar').style.width = (r / total * 100) + '%';
+  $('#timer').classList.toggle('low', r < total * 0.3 && !frozen);
+  $('#timer').classList.toggle('frozen', frozen);
+  $('#secs').textContent = frozen ? '🧊 멈춤' : Math.ceil(r / 1000) + '초';
+}
+function say(html, sub, bad) {
+  const b = $('#bubble');
+  b.innerHTML = `<div>${html}</div>${sub ? `<div class="sub">${sub}</div>` : ''}`;
+  b.classList.remove('bad');
+  if (bad) { void b.offsetWidth; b.classList.add('bad'); }
+}
+function setLetter(l) {
+  const tile = $('#letterTile');
+  tile.classList.toggle('wait', !l);
+  $('#letter').textContent = l ? l.toUpperCase() : '…';
+}
+function renderTyped() {
+  if (!S || !S.G.keypad) return;
+  const t = S.typed;
+  const fixed = S.turn === 'player' ? 1 : 0;
+  $('#typed').innerHTML = `<span class="fixed">${esc(t.slice(0, fixed))}</span>${esc(t.slice(fixed))}<span class="caret"></span>`;
+}
+function addToTrain(entry, who) {
+  S.used.add(entry.word);
+  S.cars++;
+  $('#track').append(carEl(entry, who));
+  const wrap = $('#trackWrap');
+  requestAnimationFrame(() => { wrap.scrollLeft = wrap.scrollWidth; });
+}
+function addStation() {
+  const d = document.createElement('div');
+  d.className = 'station';
+  d.innerHTML = '<span>🚉</span>새 출발';
+  $('#track').append(d);
+}
+
+/* ---------- 키패드 (1~2학년) ---------- */
+(function buildKeypad() {
+  const kp = $('#keypad');
+  'abcdefghijklmnopqrstuvwxyz'.split('').forEach(ch => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'key'; b.textContent = ch; b.dataset.k = ch;
+    kp.append(b);
+  });
+  kp.insertAdjacentHTML('beforeend',
+    '<button type="button" class="key wide" data-k="back" aria-label="지우기">⌫ 지우기</button>' +
+    '<button type="button" class="key wide ok" data-k="ok">✔ 확인</button>');
+  kp.addEventListener('click', e => {
+    const b = e.target.closest('.key'); if (!b) return;
+    keyIn(b.dataset.k);
+  });
+})();
+function keyIn(k) {
+  if (!S || S.over || S.turn !== 'player') return;
+  if (k === 'back') { if (S.typed.length > 1) S.typed = S.typed.slice(0, -1); }
+  else if (k === 'ok') { submit(S.typed); return; }
+  else if (S.typed.length < 14) S.typed += k;
+  renderTyped();
+}
+document.addEventListener('keydown', e => {
+  if ($('#game').hidden || !S || !S.G.keypad) return;
+  if (/^[a-zA-Z]$/.test(e.key)) keyIn(e.key.toLowerCase());
+  else if (e.key === 'Backspace') { e.preventDefault(); keyIn('back'); }
+  else if (e.key === 'Enter') keyIn('ok');
+});
+
+/* ---------- 글자 입력 (3~6학년) ---------- */
+$('#textMode').addEventListener('submit', e => {
+  e.preventDefault();
+  if (!S || S.turn !== 'player') return;
+  submit($('#answerInput').value);
+});
+$('#answerInput').addEventListener('input', e => {
+  const v = e.target.value.toLowerCase().replace(/[^a-z]/g, '');
+  if (v !== e.target.value) e.target.value = v;
+});
+
+/* ---------- 차례 진행 ---------- */
+function startPlayerTurn(info, note) {
+  if (!info) { endGame(true, '단어장의 단어를 모두 썼어요!'); return; }
+  S.turn = 'player';
+  S.letter = info.letter;
+  S.remaining = S.G.time * 1000;
+  S.typed = S.G.keypad ? info.letter : '';
+  setLetter(info.letter);
+  renderTyped(); renderItems(); setTimer();
+  const L = `<span class="en">${info.letter.toUpperCase()}</span>`;
+  if (note) say(note, `${L}로 시작하는 단어를 써 보세요!`);
+  else if (info.shifted) say(`<span class="en">${info.from.toUpperCase()}</span>로 시작하는 단어가 거의 없어요.`, `그래서 ${L}로 이어가요!`);
+  else say(`내 차례! ${L}로 시작하는 단어는?`, S.G.keypad ? '알파벳 버튼을 눌러 단어를 만들어요.' : '단어를 쓰고 확인을 눌러요.');
+  if (!S.G.keypad) {
+    const inp = $('#answerInput');
+    inp.value = '';
+    try { inp.focus({ preventScroll: true }); } catch (e) {}
+  }
+}
+
+function submit(raw) {
+  const w = String(raw || '').trim().toLowerCase();
+  const L = S.letter.toUpperCase();
+  if (!w || w.length < 2) { say('두 글자 이상 써 주세요!', null, true); sfx.bad(); return; }
+  if (!/^[a-z]+$/.test(w)) { say('영어 알파벳으로만 써 주세요.', null, true); sfx.bad(); return; }
+  if (w[0] !== S.letter) { say(`첫 글자는 <span class="en">${L}</span>예요!`, '다시 써 볼까요?', true); sfx.bad(); return; }
+  if (S.used.has(w)) { say(`<span class="en">${esc(w)}</span>는 이미 기차에 있어요.`, '다른 단어를 떠올려 봐요!', true); sfx.bad(); return; }
+  const entry = DICT[w];
+  if (!entry) {
+    say(`<span class="en">${esc(w)}</span>는 아직 단어장에 없어요.`, '철자를 확인하고 다시 써 볼까요? (벌칙 없음)', true);
+    sfx.bad(); return;
+  }
+  accept(entry);
+}
+
+function accept(entry) {
+  S.turn = 'robot';
+  let pts = entry.word.length * 10;
+  const notes = [];
+  if (entry.grade > S.G.g) { pts += 20; notes.push('형님 단어 +20'); }
+  if (S.remaining > S.G.time * 1000 * 0.6) { pts += 5; notes.push('빠른 정답 +5'); }
+  S.score += pts;
+  S.myWords.push(entry);
+  addToTrain(entry, 'me');
+  renderStatus(); renderItems(); setLetter(null);
+  if (S.G.keypad) { S.typed = ''; renderTyped(); } else $('#answerInput').value = '';
+  sfx.good(); speak(entry.word);
+  say(`${entry.emoji} <span class="en">${entry.word}</span> = ${esc(entry.meaning)}  (+${pts})`,
+      notes.length ? '✨ ' + notes.join(' · ') : '칙칙폭폭! 기차가 한 칸 길어졌어요.');
+  later(() => robotTurn(nextLetterFor(entry.word)), 1500);
+}
+
+function robotChoose(letter) {
+  const cands = S.pool.filter(o => o.word[0] === letter && !S.used.has(o.word));
+  if (!cands.length) return null;
+  const miss = { easy: 0.2, normal: 0.07, hard: 0 }[S.level];
+  if (Math.random() < miss) return null;
+  if (S.level === 'normal') return pick(cands);
+  // 다음 사람이 쓸 수 있는 단어 수로 줄 세우기
+  const scored = cands.map(o => ({ o, n: countStarting(o.word[o.word.length - 1], o.word) }));
+  scored.sort((a, b) => S.level === 'hard' ? a.n - b.n : b.n - a.n);
+  return pick(scored.slice(0, 3)).o;
+}
+
+function robotTurn(info) {
+  if (!info) { endGame(true, '단어장의 단어를 모두 썼어요!'); return; }
+  S.turn = 'robot';
+  renderItems();
+  setLetter(info.letter);
+  say(`🤖 음… <span class="en">${info.letter.toUpperCase()}</span>로 시작하는 단어…`, '로봇이 생각하고 있어요.');
+  later(() => {
+    const choice = robotChoose(info.letter);
+    if (choice) {
+      addToTrain(choice, 'robot');
+      sfx.robot(); speak(choice.word);
+      startPlayerTurn(nextLetterFor(choice.word));
+      const b = $('#bubble');
+      b.insertAdjacentHTML('afterbegin', `<div class="sub">🤖 로봇: ${choice.emoji} <span class="en">${choice.word}</span> (${esc(choice.meaning)})</div>`);
+    } else {
+      S.robotHearts--;
+      renderStatus(); sfx.good();
+      if (S.robotHearts <= 0) { say('🤖 으악, 모르겠어요!', '로봇 하트가 모두 없어졌어요!'); later(() => endGame(true), 1300); return; }
+      addStation();
+      const starts = [...startLetters()].filter(c => countStarting(c) >= 3);
+      const l = pick(starts.length ? starts : [...startLetters()]);
+      startPlayerTurn(l ? { letter: l } : null, '🤖 앗, 모르겠어요! 로봇 하트 -1 🎉');
+    }
+  }, 900 + Math.random() * 700);
+}
+
+function robotStartsNewTrain(first) {
+  S.turn = 'robot';
+  renderItems(); setLetter(null);
+  if (!first) addStation();
+  const own = BY_GRADE[S.G.g].filter(o => !S.used.has(o.word) && countStarting(o.word[o.word.length - 1], o.word) >= 2);
+  const choice = pick(own.length ? own : S.pool.filter(o => !S.used.has(o.word)));
+  if (!choice) { endGame(true, '단어장의 단어를 모두 썼어요!'); return; }
+  addToTrain(choice, 'robot');
+  sfx.robot(); speak(choice.word);
+  startPlayerTurn(nextLetterFor(choice.word));
+  $('#bubble').insertAdjacentHTML('afterbegin', `<div class="sub">🤖 로봇: ${choice.emoji} <span class="en">${choice.word}</span> (${esc(choice.meaning)})</div>`);
+}
+
+function playerFail(kind) {
+  if (S.turn !== 'player') return;
+  const example = S.pool.find(o => o.word[0] === S.letter && !S.used.has(o.word));
+  const exText = example ? `이런 단어가 있었어요: ${example.emoji} <span class="en">${example.word}</span> (${esc(example.meaning)})` : '';
+  if (S.shield) {
+    S.shield = false;
+    S.remaining = S.G.time * 1000;
+    renderItems(); sfx.item();
+    say('🛡️ 방패가 지켜줬어요! 한 번 더 해 봐요.', kind === 'time' ? '시간이 다시 채워졌어요.' : null);
+    return;
+  }
+  S.turn = 'robot';
+  S.hearts--;
+  renderStatus(); renderItems(); setLetter(null); sfx.bad();
+  if (example) speak(example.word);
+  say(kind === 'time' ? '⏰ 시간이 다 됐어요. 괜찮아요!' : '괜찮아요! 다음에 또 해 봐요.', exText, true);
+  if (S.hearts <= 0) { later(() => endGame(false), 2200); return; }
+  later(() => robotStartsNewTrain(false), 2600);
+}
+
+/* ---------- 아이템 ---------- */
+document.querySelector('.items').addEventListener('click', e => {
+  const b = e.target.closest('.item');
+  if (!b || !S || S.turn !== 'player' || S.over) return;
+  const k = b.dataset.item;
+  if (S.items[k] <= 0) return;
+  if (k === 'hint') {
+    const c = S.pool.filter(o => o.word[0] === S.letter && !S.used.has(o.word));
+    if (!c.length) { say('힌트로 보여줄 단어가 없어요.'); return; }
+    const o = pick(c);
+    say(`💡 ${o.emoji} <span class="en">${o.word.slice(0, 2)}${'_'.repeat(o.word.length - 2)}</span>`, `${o.word.length}글자 · 뜻: ${esc(o.meaning)}`);
+  } else if (k === 'freeze') {
+    S.frozenUntil = Date.now() + 10000;
+    say('🧊 얼음 시계! 10초 동안 시간이 멈춰요.');
+    setTimer();
+  } else if (k === 'shield') {
+    S.shield = true;
+    say('🛡️ 튼튼 방패 준비 완료!', '한 번 틀려도 하트가 줄지 않아요.');
+  }
+  S.items[k]--;
+  sfx.item(); renderItems();
+});
+
+$('#passBtn').addEventListener('click', () => { if (S && S.turn === 'player') playerFail('pass'); });
+$('#soundBtn').addEventListener('click', () => {
+  soundOn = !soundOn; store.set('wt.sound', soundOn);
+  if (!soundOn) { try { speechSynthesis.cancel(); } catch (e) {} }
+  if (S) renderStatus();
+});
+$('#quitBtn').addEventListener('click', () => { stopGame(); renderHome(); show('home'); });
+
+/* ---------- 결과 ---------- */
+function endGame(win, reason) {
+  if (S.over) return;
+  stopGame();
+  if (win) sfx.win();
+  const prev = bests[S.G.g] || 0;
+  const isBest = S.score > prev;
+  if (isBest) { bests[S.G.g] = S.score; store.set('wt.best', bests); }
+  $('#resEmoji').textContent = win ? '🏆' : '🌈';
+  $('#resTitle').textContent = win ? '이겼어요!' : '수고했어요!';
+  $('#resSub').textContent = reason || (win ? '로봇 하트를 모두 없앴어요. 대단해요!' : '단어를 많이 만났어요. 다음엔 꼭 이길 수 있어요!');
+  $('#resCars').textContent = S.cars;
+  $('#resWords').textContent = S.myWords.length;
+  $('#resScore').textContent = S.score;
+  $('#resBest').textContent = isBest && S.score > 0 ? `🎉 ${S.G.g}학년 최고 기록이에요!` : (prev ? `${S.G.g}학년 최고 기록: ${prev}점` : '');
+  const list = [...S.used].map(w => DICT[w]);
+  $('#resList').innerHTML = list.map(o => `
+    <li><span class="em">${o.emoji}</span>
+      <span><span class="en">${o.word}</span><br><span class="ko">${esc(o.meaning)}</span></span>
+      <button type="button" data-say="${o.word}" aria-label="${o.word} 발음 듣기">🔊</button></li>`).join('');
+  setTimeout(() => show('result'), 900);
+}
+$('#resList').addEventListener('click', e => {
+  const b = e.target.closest('[data-say]');
+  if (b) { const was = soundOn; soundOn = true; speak(b.dataset.say); soundOn = was; }
+});
+$('#againBtn').addEventListener('click', newGame);
+$('#homeBtn').addEventListener('click', () => { renderHome(); show('home'); });
+$('#startBtn').addEventListener('click', newGame);
+</script>
