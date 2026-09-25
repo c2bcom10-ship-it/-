@@ -1,0 +1,33 @@
+# main 브랜치에 올라온 game 폴더를 GitHub Pages 웹사이트로 올려요.
+# 처음 한 번은 저장소 Settings → Pages → Source 를 "GitHub Actions"로 바꿔야 해요.
+name: Deploy game to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths: ['game/**', '.github/workflows/pages.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: game
+      - id: deployment
+        uses: actions/deploy-pages@v4

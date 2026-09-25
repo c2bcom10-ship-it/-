@@ -1,6 +1,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Word Train</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#e5484d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="워드트레인">
+<link rel="apple-touch-icon" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=Fredoka:wght@500;600;700&display=swap">
@@ -331,6 +336,33 @@
   .danger { border: 3px solid var(--warn); background: var(--surface); color: var(--warn); border-radius: 14px; padding: 10px; font-size: 16px; }
   .small-btn { border: 0; background: var(--sun); color: var(--sun-ink); border-radius: 12px; padding: 8px 14px; font-size: 16px; justify-self: start; }
 
+  /* ---------- 4단계: 모둠 대결·말로 답하기·선생님 ---------- */
+  .teams { flex: 1; display: flex; flex-wrap: wrap; gap: 6px; min-width: 0; }
+  .team { background: var(--surface); border-radius: 12px; padding: 4px 10px; box-shadow: var(--shadow); display: grid; font-size: 13px; line-height: 1.25; flex: 1 1 40%; min-width: 0; }
+  .team b { font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .team span { font-size: 12px; color: var(--ink-soft); white-space: nowrap; }
+  .team > * { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .screen > *, .topbar > * { min-width: 0; }
+  .team.now { box-shadow: inset 0 0 0 3px var(--sun), var(--shadow); }
+  .team.out { opacity: .45; }
+  .mic { border: 0; border-radius: 14px; background: var(--surface); box-shadow: var(--shadow); padding: 10px; font-size: 17px; }
+  .mic.on { background: var(--sun); color: var(--sun-ink); animation: pulse 1s ease-in-out infinite; }
+  @keyframes pulse { 50% { transform: scale(1.03); } }
+  .classbox { display: grid; gap: 8px; }
+  .class-toggle { border: 3px solid var(--line); background: var(--surface-2); border-radius: 16px; padding: 10px 12px; display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center; text-align: left; }
+  .class-toggle > span:first-child { font-size: 28px; }
+  .class-toggle b { font-weight: 400; display: block; }
+  .class-toggle small { color: var(--ink-soft); font-size: 13px; }
+  .class-toggle.on { border-color: var(--grass); background: var(--surface); }
+  .codebox summary { cursor: pointer; color: var(--ink-soft); font-size: 15px; padding: 4px 0; }
+  .code-row { display: flex; gap: 8px; margin-top: 6px; }
+  .code-row input { flex: 1; min-width: 0; border: 0; border-radius: 12px; background: var(--surface-2); box-shadow: inset 0 0 0 2px var(--line); padding: 10px 12px; font: inherit; font-size: 15px; color: var(--ink); }
+  .code-row button { border: 0; border-radius: 12px; background: var(--grass); color: #fff; padding: 0 16px; font-size: 16px; }
+  .wordbox { width: 100%; box-sizing: border-box; border: 0; border-radius: 12px; background: var(--surface-2); box-shadow: inset 0 0 0 2px var(--line); padding: 10px 12px; font-family: var(--en); font-size: 16px; color: var(--ink); resize: vertical; }
+  .seg.six { grid-template-columns: repeat(6, 1fr); }
+  .seg.six button { font-size: 14px; padding: 8px 2px; }
+  .panel code { font-family: var(--en); background: var(--surface-2); border-radius: 6px; padding: 0 5px; }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .track-wrap { scroll-behavior: auto; }
@@ -385,6 +417,7 @@
     <div class="panel">
       <h2>몇 학년이에요?</h2>
       <div class="grades" id="grades"></div>
+      <div class="classbox" id="classBox"></div>
     </div>
 
     <div class="panel">
@@ -422,6 +455,7 @@
         <div class="score"><span id="score">0</span><small>점수</small></div>
         <div class="side r" id="side1"><span id="p1Name">🤖 로봇</span><span class="hearts" id="p1Hearts"></span></div>
       </div>
+      <div class="teams" id="teams" hidden></div>
       <button type="button" class="icon-btn" id="soundBtn" aria-label="소리 켜기/끄기">🔊</button>
     </div>
 
@@ -448,6 +482,7 @@
         <input id="answerInput" type="text" inputmode="latin" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="영어 단어 쓰기" aria-label="영어 단어 입력">
         <button type="submit">확인</button>
       </form>
+      <button type="button" class="mic" id="micBtn" hidden>🎤 말로 답하기</button>
     </div>
 
     <div class="items">
@@ -556,8 +591,14 @@
       <h2>👫 친구랑 대결</h2>
     </div>
     <div class="panel">
-      <p class="hint-text" style="margin:0">휴대폰 하나로 번갈아 해요. 내 차례가 끝나면 친구에게 건네주세요. 하트 3개를 먼저 다 잃으면 져요.</p>
+      <p class="hint-text" style="margin:0">휴대폰 하나로 번갈아 해요. 내 차례가 끝나면 다음 친구에게 건네주세요. 하트를 다 잃으면 탈락! 마지막까지 남은 사람이 이겨요. 교실에서는 TV나 전자칠판에 띄워 모둠 대결로 해 보세요.</p>
       <p class="hint-text" style="margin:0" id="friendGrade"></p>
+      <h3>몇 명(모둠)이 해요?</h3>
+      <div class="seg" id="friendCount">
+        <button type="button" data-n="2">2명</button>
+        <button type="button" data-n="3">3명</button>
+        <button type="button" data-n="4">4명</button>
+      </div>
     </div>
     <div class="screen" id="friendGrid"></div>
     <button type="button" class="go" id="friendGo">⚔️ 대결 시작!</button>
@@ -580,7 +621,7 @@
   <section id="parent" class="screen" hidden>
     <div class="subhead">
       <button type="button" class="icon-btn" data-back aria-label="처음 화면으로">←</button>
-      <h2>👨‍👩‍👧 부모님 페이지</h2>
+      <h2>👨‍👩‍👧 부모님·선생님</h2>
     </div>
     <div class="panel" id="parentLock">
       <h3>부모님 확인</h3>
@@ -619,6 +660,30 @@
         <p class="hint-text" id="limitInfo"></p>
         <button type="button" class="small-btn" id="bonusBtn">⏰ 오늘만 10분 더 주기</button>
         <p class="hint-text">시간이 다 되면 하던 게임은 끝까지 하고, 새 게임은 시작할 수 없어요.</p>
+      </div>
+      <div class="panel" id="teacherPanel">
+        <h3>🏫 선생님 모드 · 우리 반 단어장</h3>
+        <p class="hint-text">이번 주에 배우는 단어를 한 줄에 하나씩 써요. <code>tiger|호랑이|🐯</code>처럼 뜻과 그림을 붙여도 되고, <code>tiger</code>만 써도 돼요. 게임 단어장에 있는 단어는 뜻과 그림이 자동으로 채워져요.</p>
+        <label class="hint-text" for="clsName">단어장 이름</label>
+        <input id="clsName" class="fname" maxlength="20" placeholder="예: 3학년 5단원" autocomplete="off">
+        <label class="hint-text" for="clsText">단어 목록 (200개까지)</label>
+        <textarea id="clsText" class="wordbox" rows="8" spellcheck="false" placeholder="apple|사과|🍎&#10;tiger&#10;school"></textarea>
+        <span class="hint-text">제한 시간과 입력 방식은 이 학년에 맞춰요</span>
+        <div class="seg six" id="clsLevel">
+          <button type="button" data-l="1">1학년</button><button type="button" data-l="2">2학년</button><button type="button" data-l="3">3학년</button>
+          <button type="button" data-l="4">4학년</button><button type="button" data-l="5">5학년</button><button type="button" data-l="6">6학년</button>
+        </div>
+        <button type="button" class="small-btn" id="clsSave">💾 저장하고 코드 만들기</button>
+        <p class="hint-text" id="clsMsg" aria-live="polite"></p>
+        <div class="screen" id="clsShare" hidden>
+          <label class="hint-text" for="clsCode">아이들에게 보낼 코드예요. 알림장이나 문자로 보내 주세요. 아이는 첫 화면의 "선생님께 받은 단어장 코드 넣기"에 붙여 넣으면 돼요.</label>
+          <textarea id="clsCode" class="wordbox" rows="3" readonly></textarea>
+          <div class="row-btns">
+            <button type="button" class="ghost" id="clsCopy">📋 코드 복사</button>
+            <button type="button" class="ghost" id="clsBattle">👩‍🏫 우리 반 대결</button>
+          </div>
+          <button type="button" class="danger" id="clsDel">단어장 지우기</button>
+        </div>
       </div>
       <div class="panel">
         <h3>기록 지우기</h3>
@@ -1051,11 +1116,51 @@ const P = Object.assign({
   streak: 0, lastDay: '', dailyDay: '', dailyCount: 0,
   games: 0, wins: 0, hardWins: 0, maxCars: 0, longest: 0, rare: 0,
   friendGames: 0, boomerHits: 0, adv: {}, time: {}, bonus: {}, missed: {}, limit: 0,
-  friends: [{ name: '1번 친구', emoji: '🐯' }, { name: '2번 친구', emoji: '🐰' }],
+  friends: [], friendCount: 2, cls: null,
 }, store.get('wt.profile', {}) || {});
 P.inv = Object.assign({ hint: 0, freeze: 0, shield: 0, boomerang: 0, tornado: 0 }, P.inv);
+['🐯', '🐰', '🐶', '🐱'].forEach((e, i) => { if (!P.friends[i]) P.friends[i] = { name: `${i + 1}번 친구`, emoji: e }; });
 const save = () => store.set('wt.profile', P);
-const stickerCount = () => Object.keys(P.stickers).filter(w => DICT[w]).length;
+const stickerCount = () => Object.keys(P.stickers).filter(w => DICT[w] && !DICT[w].custom).length;
+
+/* ---------- 우리 반 단어장 (선생님 모드) ---------- */
+const BUILTIN_COUNT = Object.keys(DICT).length;
+const clean = (x, n) => String(x == null ? '' : x).replace(/[<>&"'`]/g, '').trim().slice(0, n);
+function mergeClassWords() {
+  Object.keys(DICT).forEach(k => { if (DICT[k].custom) delete DICT[k]; });
+  if (!P.cls) return;
+  P.cls.words.forEach(w => { if (!DICT[w.word]) DICT[w.word] = { word: w.word, meaning: w.meaning, emoji: w.emoji, grade: P.cls.level, custom: true }; });
+}
+const classOn = () => !!(P.cls && P.cls.on && P.cls.words.length);
+const classSet = () => new Set(P.cls.words.map(w => w.word));
+function parseWordList(text) {
+  const out = [], bad = [], seen = new Set();
+  String(text).split('\n').forEach(line => {
+    line = line.trim();
+    if (!line) return;
+    const parts = line.includes('|') ? line.split('|') : [line.split(/[\s,]+/)[0], line.replace(/^\S+[\s,]*/, '')];
+    const w = (parts[0] || '').trim().toLowerCase();
+    if (!/^[a-z]{2,15}$/.test(w)) { bad.push(line); return; }
+    if (seen.has(w) || out.length >= 200) return;
+    seen.add(w);
+    const base = DICT[w] && !DICT[w].custom ? DICT[w] : null;
+    out.push({ word: w, meaning: clean(parts[1], 30) || (base ? base.meaning : '—'), emoji: clean(parts[2], 8) || (base ? base.emoji : '🔤') });
+  });
+  return { out, bad };
+}
+const toCode = c => 'WT1-' + btoa(unescape(encodeURIComponent(JSON.stringify({ n: c.name, l: c.level, w: c.words.map(x => [x.word, x.meaning, x.emoji]) }))));
+function fromCode(code) {
+  try {
+    const raw = String(code).replace(/\s+/g, '');
+    if (!raw.startsWith('WT1-')) return null;
+    const o = JSON.parse(decodeURIComponent(escape(atob(raw.slice(4)))));
+    const words = (o.w || []).filter(a => Array.isArray(a) && /^[a-z]{2,15}$/.test(a[0])).slice(0, 200)
+      .map(a => ({ word: a[0], meaning: clean(a[1], 30) || '—', emoji: clean(a[2], 8) || '🔤' }));
+    if (!words.length) return null;
+    return { name: clean(o.n, 20) || '우리 반 단어장', level: Math.min(6, Math.max(1, Math.round(+o.l) || 3)), words, on: true };
+  } catch (e) { return null; }
+}
+mergeClassWords();
 
 const PET = [
   { at: 0,   e: '🥚', name: '알' },
@@ -1276,6 +1381,7 @@ const bests = store.get('wt.best', {}) || {};
 
 function renderHome() {
   renderProfile();
+  renderClassBox();
   $('#grades').innerHTML = GRADES.map(G => `
     <button type="button" class="grade" data-g="${G.g}" aria-pressed="${G.g === selGrade}">
       <span class="ico">${G.icon}</span>
@@ -1328,9 +1434,11 @@ function newGame(mode, extra = {}) {
     renderHome(); show('home'); return;
   }
   const G = GRADES[selGrade - 1];
-  const pool = Object.values(DICT).filter(o => o.grade <= G.g);
+  const classMode = mode !== 'adventure' && classOn();
+  const cs = classMode ? classSet() : null;
+  const pool = Object.values(DICT).filter(o => (cs && cs.has(o.word)) || (!o.custom && o.grade <= G.g));
   const players = mode === 'friend'
-    ? P.friends.map(f => makePlayer(f.name, f.emoji, { items: makeItems(true) }))
+    ? P.friends.slice(0, P.friendCount).map(f => makePlayer(f.name, f.emoji, { items: makeItems(true) }))
     : [makePlayer('나', petEmoji(), { items: makeItems(false) }), makePlayer('로봇', '🤖', { robot: true })];
   S = {
     G, pool, mode, level: extra.level || selLevel, players, cur: 0,
@@ -1339,7 +1447,7 @@ function newGame(mode, extra = {}) {
     myWords: [], fast: 0, itemUses: 0, newStickers: [], xpGain: 0, won: false, dailyDone: false,
     robotDizzy: false, lastHuman: -1, pendingTurn: null, saveT: 0, limitWarned: false,
     island: extra.island, stage: extra.stage, goal: extra.goal || 0,
-    theme: extra.island != null ? themeSet(extra.island) : null,
+    theme: extra.island != null ? themeSet(extra.island) : cs, classMode,
   };
   lastGame = { mode, extra };
   $('#track').innerHTML = '';
@@ -1390,6 +1498,12 @@ function stopGame() {
 
 const curP = () => S.players[S.cur];
 const otherIdx = () => 1 - S.cur;
+/* 다음 차례: 하트가 남은 사람 중 다음 사람 */
+function nextIdx() {
+  const n = S.players.length;
+  for (let k = 1; k <= n; k++) { const i = (S.cur + k) % n; if (S.players[i].hearts > 0) return i; }
+  return S.cur;
+}
 /* 아이템 줄에 보여줄 사람: 친구 대결은 지금 차례인 친구, 나머지는 나 */
 const focusP = () => S.mode === 'friend' ? curP() : S.players[0];
 
@@ -1433,6 +1547,12 @@ function randomStart() {
 /* ---------- 화면 갱신 ---------- */
 function renderStatus() {
   const [a, b] = S.players;
+  const isFriend = S.mode === 'friend';
+  $('#teams').hidden = !isFriend;
+  document.querySelector('.scoreboard').hidden = isFriend;
+  if (isFriend) {
+    $('#teams').innerHTML = S.players.map((p, i) => `<span class="team${i === S.cur && !S.over ? ' now' : ''}${p.hearts <= 0 ? ' out' : ''}"><b>${p.emoji} ${esc(p.name)}</b><span>${p.hearts > 0 ? heartStr(p.hearts) : '탈락'} · ${p.score}점</span></span>`).join('');
+  }
   $('#p0Name').textContent = `${a.emoji} ${a.name}`;
   $('#p0Hearts').textContent = heartStr(a.hearts);
   if (S.mode === 'adventure') {
@@ -1458,6 +1578,7 @@ function renderItems() {
     b.disabled = !(p.items[k] > 0) || p.itemUses >= 3 || S.turn !== 'human' || S.over;
   });
   $('#passBtn').disabled = S.turn !== 'human' || S.over;
+  $('#micBtn').disabled = S.turn !== 'human' || S.over;
 }
 function setTimer() {
   const total = S.G.time * 1000;
@@ -1637,7 +1758,7 @@ function accept(entry) {
   const notes = [];
   if (entry.grade > S.G.g) { pts += 20; notes.push('형님 단어 +20'); }
   if (S.remaining > S.G.time * 1000 * 0.6) { pts += 5; S.fast++; notes.push('빠른 정답 +5'); }
-  if (S.theme && S.theme.has(entry.word)) { pts += 10; notes.push('🌟 테마 단어 +10'); }
+  if (S.theme && S.theme.has(entry.word)) { pts += 10; notes.push(S.classMode ? '📘 우리 반 단어 +10' : '🌟 테마 단어 +10'); }
   p.score += pts;
   p.words.push(entry);
   S.myWords.push(entry);
@@ -1660,7 +1781,7 @@ function accept(entry) {
     if (l) info = { letter: l, boomer: true };
   }
   if (!info) info = nextLetterFor(entry.word);
-  later(() => { S.cur = otherIdx(); startTurn(info); }, 1500);
+  later(() => { S.cur = nextIdx(); startTurn(info); }, 1500);
 }
 
 /* 스티커 모으기 + 펫 먹이 주기 */
@@ -1766,7 +1887,11 @@ function friendStart(first) {
   S.turn = 'busy';
   if (!first) addStation();
   const unused = o => !S.used.has(o.word);
-  const own = BY_GRADE[S.G.g].filter(o => unused(o) && countStarting(o.word[o.word.length - 1], o.word) >= 2);
+  let own = BY_GRADE[S.G.g].filter(o => unused(o) && countStarting(o.word[o.word.length - 1], o.word) >= 2);
+  if (S.theme) {
+    const th = S.pool.filter(o => unused(o) && S.theme.has(o.word) && countStarting(o.word[o.word.length - 1], o.word) >= 2);
+    if (th.length) own = th;
+  }
   const choice = pick(own.length ? own : S.pool.filter(unused));
   if (!choice) { endGame(null, '단어장의 단어를 모두 썼어요!'); return; }
   addToTrain(choice, 'start', '출발');
@@ -1793,8 +1918,10 @@ function playerFail(kind) {
   if (example) speak(example.word);
   const cheer = S.mode === 'friend' ? `${p.emoji} ${esc(p.name)}, 괜찮아~` : `${petEmoji()} 괜찮아~`;
   say(kind === 'time' ? `⏰ 시간이 다 됐어요. ${cheer}` : `${cheer} 다음에 또 해 봐요!`, exText, true);
-  if (p.hearts <= 0) { later(() => endGame(S.mode === 'friend' ? null : false), 2200); return; }
-  if (S.mode === 'friend') later(() => { S.cur = otherIdx(); friendStart(false); }, 2600);
+  const alive = S.players.filter(x => x.hearts > 0).length;
+  if (S.mode === 'friend' ? alive <= 1 : p.hearts <= 0) { later(() => endGame(S.mode === 'friend' ? null : false), 2200); return; }
+  if (S.mode === 'friend' && p.hearts <= 0) toast(`${p.emoji} ${esc(p.name)} 탈락! 끝까지 응원해 줘요 📣`);
+  if (S.mode === 'friend') later(() => { S.cur = nextIdx(); friendStart(false); }, 2600);
   else later(() => robotStartsNewTrain(false), 2600);
 }
 
@@ -1824,7 +1951,7 @@ document.querySelector('.items').addEventListener('click', e => {
     say('🪃 부메랑 준비!', '이번에 단어를 맞히면 상대가 가장 어려운 글자를 받아요.');
   } else if (k === 'tornado') {
     if (S.mode === 'friend') {
-      const o = S.players[otherIdx()];
+      const o = S.players[nextIdx()];
       if (o.dizzy) return;
       o.dizzy = true;
       say('🌪️ 회오리 발사!', `${o.emoji} ${esc(o.name)}의 다음 차례 시간이 5초 줄어요${S.G.keypad ? '. 알파벳 버튼도 뒤섞여요' : ''}!`);
@@ -1896,7 +2023,8 @@ function endGame(win, reason) {
   const [a, b] = S.players;
   const friend = S.mode === 'friend';
   let winner = null;
-  if (friend) winner = a.hearts <= 0 ? b : b.hearts <= 0 ? a : (a.score >= b.score ? a : b);
+  const ranking = S.players.slice().sort((x, y) => ((y.hearts > 0) - (x.hearts > 0)) || (y.score - x.score));
+  if (friend) winner = ranking[0];
   if (win || friend) sfx.win();
   const rw = settle(!!win);
 
@@ -1904,7 +2032,7 @@ function endGame(win, reason) {
   if (friend) {
     $('#resEmoji').textContent = winner.emoji;
     $('#resTitle').textContent = `${winner.name} 승리!`;
-    $('#resSub').textContent = reason || '둘 다 멋졌어요! 한 판 더 할까요?';
+    $('#resSub').textContent = ranking.map((p, i) => `${['🥇', '🥈', '🥉', '🏅'][i]} ${p.emoji} ${p.name} ${p.score}점`).join('   ') + (reason ? ` · ${reason}` : '');
   } else if (S.mode === 'adventure') {
     const isl = ISLANDS[S.island];
     $('#resEmoji').textContent = win ? '⭐'.repeat(rw.adv.stars) : isl.e;
@@ -1919,8 +2047,8 @@ function endGame(win, reason) {
   // 숫자
   $('#resCars').textContent = S.cars;
   if (friend) {
-    $('#resL2').textContent = `${a.emoji} ${a.name}`; $('#resWords').textContent = a.score;
-    $('#resL3').textContent = `${b.emoji} ${b.name}`; $('#resScore').textContent = b.score;
+    $('#resL2').textContent = `${winner.emoji} 우승 점수`; $('#resWords').textContent = winner.score;
+    $('#resL3').textContent = '참가'; $('#resScore').textContent = S.players.length + '명';
   } else {
     $('#resL2').textContent = '내가 쓴 단어'; $('#resWords').textContent = a.words.length;
     $('#resL3').textContent = '점수'; $('#resScore').textContent = a.score;
@@ -1980,7 +2108,7 @@ $('#homeBtn').addEventListener('click', () => afterResult.home && afterResult.ho
 $('#startBtn').addEventListener('click', () => newGame('robot'));
 $('#friendBtn').addEventListener('click', () => { renderFriend(); show('friend'); });
 $('#mapBtn').addEventListener('click', () => { renderMap(); show('map'); });
-$('#parentBtn').addEventListener('click', () => { parentOk = false; wipeArmed = false; renderParent(); show('parent'); });
+$('#parentBtn').addEventListener('click', () => { parentOk = false; wipeArmed = false; teacherInit = false; renderParent(); show('parent'); });
 
 /* ---------- 첫 화면 정보 ---------- */
 function renderWallet() {
@@ -2004,7 +2132,7 @@ function renderProfile() {
   $('#dailyText').textContent = todayMission().text(selGrade);
   $('#dailyState').textContent = dailyDone() ? '✅ 성공! 내일 또 만나요' : `성공하면 🪙 +${DAILY_REWARD}`;
   $('#dailyCard').classList.toggle('done', dailyDone());
-  $('#bookCount').textContent = `${stickerCount()} / ${Object.keys(DICT).length}`;
+  $('#bookCount').textContent = `${stickerCount()} / ${BUILTIN_COUNT}`;
   $('#badgeCount').textContent = `${Object.keys(P.badges).length} / ${BADGES.length}`;
   const out = timeLeft() <= 0;
   $('#restNote').hidden = !out;
@@ -2084,7 +2212,8 @@ function renderBadges() {
 const FACES = ['🐯', '🐰', '🐶', '🐱', '🐼', '🦊', '🐸', '🐧'];
 function renderFriend() {
   $('#friendGrade').textContent = `${GRADES[selGrade - 1].icon} ${selGrade}학년 단어로 해요. 학년은 처음 화면에서 바꿀 수 있어요.`;
-  $('#friendGrid').innerHTML = P.friends.map((f, i) => `
+  document.querySelectorAll('#friendCount button').forEach(b => b.setAttribute('aria-pressed', +b.dataset.n === P.friendCount));
+  $('#friendGrid').innerHTML = P.friends.slice(0, P.friendCount).map((f, i) => `
     <div class="panel fcard">
       <h3>${i + 1}번 친구</h3>
       <label class="hint-text" for="fname${i}">이름 (6글자까지)</label>
@@ -2166,6 +2295,7 @@ function renderParent() {
     ? `오늘 ${mins(playedToday())}분 했어요 · 남은 시간 ${Math.max(0, mins(left))}분${P.bonus[today()] ? ` (오늘 ${P.bonus[today()]}분 더 줬어요)` : ''}`
     : '제한 없이 할 수 있어요.';
   $('#bonusBtn').hidden = !P.limit;
+  renderTeacher();
   $('#wipeBtn').textContent = wipeArmed ? '⚠️ 정말 지울까요? 한 번 더 누르면 모두 지워져요' : '기록 모두 지우기';
 }
 $('#quizForm').addEventListener('submit', e => {
@@ -2197,6 +2327,121 @@ document.querySelector('.menu').addEventListener('click', e => {
   if (id === 'badges') renderBadges();
   show(id);
 });
+
+/* ---------- 친구 대결 인원 ---------- */
+$('#friendCount').addEventListener('click', e => {
+  const b = e.target.closest('[data-n]'); if (!b) return;
+  P.friendCount = +b.dataset.n; save(); renderFriend();
+});
+
+/* ---------- 우리 반 단어장: 첫 화면 ---------- */
+function renderClassBox() {
+  const c = P.cls;
+  $('#classBox').innerHTML = (c ? `
+    <button type="button" class="class-toggle${c.on ? ' on' : ''}" id="classToggle" aria-pressed="${!!c.on}">
+      <span>📘</span>
+      <span><b>우리 반 단어장 · ${esc(c.name)}</b>
+      <small>${c.words.length}단어 · ${c.on ? '켜짐: 로봇·친구 대결에 이 단어가 많이 나와요' : '꺼짐: 누르면 켜져요'}</small></span>
+    </button>` : '') + `
+    <details class="codebox"><summary>🏫 선생님께 받은 단어장 코드 넣기</summary>
+      <div class="code-row"><input id="codeIn" placeholder="WT1-로 시작하는 코드" autocomplete="off" spellcheck="false" aria-label="단어장 코드"><button type="button" id="codeGo">넣기</button></div>
+    </details>`;
+}
+$('#classBox').addEventListener('click', e => {
+  if (e.target.closest('#classToggle')) {
+    P.cls.on = !P.cls.on; save(); renderHome();
+    toast(P.cls.on ? '📘 우리 반 단어장을 켰어요.' : '우리 반 단어장을 껐어요.');
+  } else if (e.target.closest('#codeGo')) {
+    const c = fromCode($('#codeIn').value);
+    if (!c) { toast('코드가 올바르지 않아요. 선생님께 받은 코드를 그대로 붙여 넣어 주세요.'); return; }
+    P.cls = c; mergeClassWords(); save(); renderHome();
+    selGrade = c.level; store.set('wt.grade', selGrade); renderHome();
+    toast(`📘 "${esc(c.name)}" 단어 ${c.words.length}개를 넣었어요!`);
+  }
+});
+
+/* ---------- 우리 반 단어장: 선생님 화면 ---------- */
+let clsLevelSel = 3, teacherInit = false;
+function renderTeacher() {
+  const c = P.cls;
+  if (!teacherInit) {
+    $('#clsName').value = c ? c.name : '';
+    $('#clsText').value = c ? c.words.map(w => `${w.word}|${w.meaning}|${w.emoji}`).join('\n') : '';
+    clsLevelSel = c ? c.level : selGrade;
+    $('#clsMsg').textContent = '';
+    teacherInit = true;
+  }
+  document.querySelectorAll('#clsLevel button').forEach(b => b.setAttribute('aria-pressed', +b.dataset.l === clsLevelSel));
+  $('#clsShare').hidden = !c;
+  if (c) $('#clsCode').value = toCode(c);
+}
+$('#clsLevel').addEventListener('click', e => {
+  const b = e.target.closest('[data-l]'); if (!b) return;
+  clsLevelSel = +b.dataset.l; renderTeacher();
+});
+$('#clsSave').addEventListener('click', () => {
+  const { out, bad } = parseWordList($('#clsText').value);
+  if (!out.length) { $('#clsMsg').textContent = '영어 단어를 한 줄에 하나씩 써 주세요. (예: apple)'; return; }
+  P.cls = { name: clean($('#clsName').value, 20) || '우리 반 단어장', level: clsLevelSel, words: out, on: true };
+  mergeClassWords(); save();
+  $('#clsText').value = out.map(w => `${w.word}|${w.meaning}|${w.emoji}`).join('\n');
+  $('#clsMsg').textContent = `✅ 단어 ${out.length}개를 저장했어요.` + (bad.length ? ` 영어 단어가 아닌 줄 ${bad.length}개는 뺐어요: ${bad.slice(0, 3).join(', ')}` : '');
+  renderTeacher();
+});
+$('#clsCopy').addEventListener('click', () => {
+  const box = $('#clsCode');
+  const fallback = () => { box.focus(); box.select(); toast('코드를 길게 눌러 복사해 주세요.'); };
+  try { navigator.clipboard.writeText(box.value).then(() => toast('📋 코드를 복사했어요!'), fallback); } catch (e) { fallback(); }
+});
+$('#clsBattle').addEventListener('click', () => {
+  P.friends.forEach((f, i) => { if (/^\d번 친구$/.test(f.name)) f.name = `${i + 1}모둠`; });
+  if (P.friendCount < 4) P.friendCount = 4;
+  if (P.cls) P.cls.on = true;
+  save(); parentOk = false;
+  renderFriend(); show('friend');
+  toast('모둠 이름과 수를 정하고 시작하세요!');
+});
+$('#clsDel').addEventListener('click', () => {
+  P.cls = null; mergeClassWords(); save();
+  teacherInit = false; renderTeacher();
+  toast('우리 반 단어장을 지웠어요.');
+});
+
+/* ---------- 말로 답하기 ---------- */
+const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+let listening = false;
+if (SpeechRec) $('#micBtn').hidden = false;
+$('#micBtn').addEventListener('click', () => {
+  if (!S || S.turn !== 'human' || listening) return;
+  let rec;
+  try { rec = new SpeechRec(); } catch (e) { say('이 기기에서는 말로 답하기를 쓸 수 없어요.'); return; }
+  rec.lang = 'en-US'; rec.interimResults = false; rec.maxAlternatives = 5;
+  const turnLetter = S.letter, turnPlayer = S.cur;
+  const btn = $('#micBtn');
+  const done = () => { listening = false; btn.classList.remove('on'); btn.textContent = '🎤 말로 답하기'; };
+  listening = true; btn.classList.add('on'); btn.textContent = '👂 듣고 있어요… 단어를 말해 봐요';
+  rec.onresult = ev => {
+    if (!S || S.over || S.turn !== 'human' || S.letter !== turnLetter || S.cur !== turnPlayer) return;
+    const alts = [...ev.results[0]].map(a => a.transcript);
+    const words = alts.flatMap(t => t.toLowerCase().split(/\s+/)).map(w => w.replace(/[^a-z]/g, '')).filter(Boolean);
+    const hit = words.find(w => w[0] === S.letter && DICT[w] && !S.used.has(w));
+    if (hit) submit(hit);
+    else say(`🎤 "${esc(words[0] || '…')}"(으)로 들렸어요.`, '다시 말하거나 글자로 써 주세요.', true);
+  };
+  rec.onerror = ev => {
+    if (ev.error === 'not-allowed' || ev.error === 'service-not-allowed' || ev.error === 'audio-capture') say('🎤 마이크를 쓸 수 없어요.', '마이크 권한을 허용해 주세요. 미리보기 화면에서는 안 되고, 게임 웹사이트 주소로 열면 돼요.', true);
+    else if (ev.error === 'no-speech') say('🎤 아무 소리도 안 들렸어요.', '버튼을 다시 누르고 크게 말해 봐요.');
+    else if (ev.error === 'network') say('🎤 인터넷 연결이 필요해요.', '말로 답하기는 인터넷이 될 때만 쓸 수 있어요.', true);
+    else say('🎤 잘 안 들렸어요. 다시 해 볼까요?');
+  };
+  rec.onend = done;
+  try { rec.start(); } catch (e) { done(); }
+});
+
+/* ---------- 앱처럼 설치 (웹사이트 주소로 열었을 때만) ---------- */
+if ('serviceWorker' in navigator && location.protocol === 'https:' && !/claude/.test(location.hostname)) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
 
 applyColor();
 checkIn();
