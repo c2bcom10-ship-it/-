@@ -112,7 +112,7 @@
   .car {
     position: relative; min-width: 74px; padding: 6px 10px 10px; border-radius: 12px 12px 6px 6px;
     display: grid; justify-items: center; gap: 0; margin-bottom: 10px;
-    background: var(--red); color: var(--red-ink);
+    background: var(--mycar, var(--red)); color: var(--mycar-ink, var(--red-ink));
     animation: roll-in .35s ease-out;
   }
   .car.robot { background: var(--robot); color: var(--robot-ink); }
@@ -216,6 +216,75 @@
   .row-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .ghost { border: 3px solid var(--line); background: var(--surface); border-radius: 18px; font-size: 20px; padding: 12px; }
 
+  /* ---------- 2단계: 지갑·펫·도전·메뉴 ---------- */
+  .wallet { display: flex; gap: 8px; flex-wrap: wrap; }
+  .wallet span, .wallet-mini { background: var(--surface); border-radius: 999px; padding: 4px 12px; box-shadow: var(--shadow); font-size: 15px; white-space: nowrap; }
+  .wallet b, .wallet-mini b { font-family: var(--en); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .petcard { grid-template-columns: auto 1fr; align-items: center; }
+  .pet { position: relative; width: 88px; height: 88px; border-radius: 50%; background: var(--surface-2); display: grid; place-items: center; font-size: 54px; line-height: 1; animation: bob 2.4s ease-in-out infinite; }
+  .pet .acc { position: absolute; top: -14px; right: -6px; font-size: 32px; transform: rotate(14deg); }
+  @keyframes bob { 50% { transform: translateY(-5px); } }
+  .petinfo { display: grid; gap: 6px; min-width: 0; }
+  .meter { height: 12px; border-radius: 999px; background: var(--surface-2); overflow: hidden; box-shadow: inset 0 0 0 2px var(--line); }
+  .meter i { display: block; height: 100%; background: var(--grass); border-radius: 999px; transition: width .4s; }
+  .daily { gap: 6px; box-shadow: inset 0 0 0 3px var(--sun), var(--shadow); }
+  .daily.done { box-shadow: inset 0 0 0 3px var(--grass), var(--shadow); }
+  .daily-top { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; font-size: 14px; color: var(--ink-soft); }
+  .tag { background: var(--sun); color: var(--sun-ink); border-radius: 999px; padding: 1px 10px; }
+  .daily-text { margin: 0; font-size: 21px; }
+  .menu { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .menu button { border: 0; background: var(--surface); border-radius: 18px; box-shadow: var(--shadow); padding: 12px 6px; display: grid; justify-items: center; font-size: 17px; }
+  .menu button span { font-size: 30px; line-height: 1.2; }
+  .menu small { font-size: 12px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .subhead { display: flex; align-items: center; gap: 10px; }
+  .subhead h2 { flex: 1; font-size: 26px; }
+  .panel h3 { margin: 0; font-weight: 400; font-size: 19px; }
+
+  /* 상점 */
+  .shop-list { display: grid; gap: 8px; }
+  .shop-row { display: grid; grid-template-columns: 40px 1fr auto; gap: 10px; align-items: center; background: var(--surface-2); border-radius: 14px; padding: 8px 10px; }
+  .shop-row .se { font-size: 28px; text-align: center; }
+  .shop-row small { display: block; color: var(--ink-soft); font-size: 13px; }
+  .buy { border: 0; border-radius: 12px; background: var(--sun); color: var(--sun-ink); padding: 8px 12px; font-size: 15px; white-space: nowrap; }
+  .buy.poor { opacity: .5; }
+  .buy.owned { background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 2px var(--line); }
+  .buy.using { background: var(--grass); color: #fff; }
+  .choice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .choice { background: var(--surface-2); border-radius: 14px; padding: 10px 6px; display: grid; justify-items: center; gap: 6px; text-align: center; font-size: 15px; }
+  .swatch { width: 52px; height: 30px; border-radius: 8px; box-shadow: inset 0 -4px 0 rgba(0,0,0,.18); }
+  .choice .ce { font-size: 30px; line-height: 1.1; }
+
+  /* 스티커북 */
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tabs button { border: 2px solid var(--line); background: var(--surface-2); border-radius: 999px; padding: 4px 10px; font-size: 14px; }
+  .tabs button[aria-pressed="true"] { border-color: var(--red); background: var(--surface); }
+  .stickers { display: grid; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 8px; }
+  .stk { border: 0; background: var(--surface-2); border-radius: 14px; padding: 8px 4px; display: grid; justify-items: center; align-content: center; gap: 2px; min-height: 80px; }
+  .stk span { font-size: 30px; line-height: 1.1; }
+  .stk small { font-family: var(--en); font-weight: 600; font-size: 12px; overflow-wrap: anywhere; }
+  .stk.empty { box-shadow: inset 0 0 0 2px var(--line); background: transparent; color: var(--ink-soft); }
+  .stk.empty span { font-family: var(--en); font-size: 24px; opacity: .5; }
+  .gold { margin: 0; text-align: center; background: var(--sun); color: var(--sun-ink); border-radius: 12px; padding: 6px; }
+
+  /* 배지 */
+  .badge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .badge { background: var(--surface-2); border-radius: 16px; padding: 10px 6px; text-align: center; display: grid; gap: 2px; justify-items: center; align-content: start; }
+  .badge .be { font-size: 34px; line-height: 1.1; }
+  .badge b { font-weight: 400; font-size: 15px; }
+  .badge small { font-size: 12px; color: var(--ink-soft); }
+  .badge.locked .be { filter: grayscale(1); opacity: .35; }
+
+  /* 결과 보상 */
+  .rewards { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .rewards li { display: grid; grid-template-columns: 32px 1fr auto; gap: 8px; align-items: center; background: var(--surface-2); border-radius: 12px; padding: 6px 10px; }
+  .rewards li > span:first-child { font-size: 22px; text-align: center; }
+  .rewards b { font-family: var(--en); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  /* 알림 */
+  .toasts { position: fixed; left: 0; right: 0; bottom: 0; padding: 0 16px calc(16px + env(safe-area-inset-bottom, 0px)); display: grid; justify-items: center; gap: 8px; pointer-events: none; z-index: 10; }
+  .toast { background: var(--ink); color: var(--surface); border-radius: 16px; padding: 10px 16px; font-size: 16px; box-shadow: 0 6px 18px rgba(0,0,0,.25); animation: pop .3s ease-out; max-width: 520px; }
+  @keyframes pop { from { transform: translateY(20px); opacity: 0; } }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .track-wrap { scroll-behavior: auto; }
@@ -230,6 +299,32 @@
       <h1>Word <span>Train</span></h1>
       <p>워드 트레인 · 영어 끝말잇기 기차 놀이</p>
     </header>
+
+    <div class="wallet">
+      <span>🪙 <b class="coins">0</b></span>
+      <span>💎 <b class="gems">0</b></span>
+      <span>🔥 <b id="streak">0</b>일째 출석</span>
+    </div>
+
+    <div class="panel petcard">
+      <div class="pet" aria-hidden="true"><span id="petFace">🥚</span><span class="acc" id="petAcc"></span></div>
+      <div class="petinfo">
+        <h2 id="petName">내 펫</h2>
+        <div class="meter"><i id="petBar"></i></div>
+        <p class="hint-text" id="petNext"></p>
+      </div>
+    </div>
+
+    <div class="panel daily" id="dailyCard">
+      <div class="daily-top"><span class="tag">📅 오늘의 도전</span><span id="dailyState"></span></div>
+      <p class="daily-text" id="dailyText"></p>
+    </div>
+
+    <div class="menu">
+      <button type="button" data-go="book"><span>📒</span>스티커북<small id="bookCount"></small></button>
+      <button type="button" data-go="shop"><span>🛒</span>상점<small>아이템·꾸미기</small></button>
+      <button type="button" data-go="badges"><span>🏅</span>배지<small id="badgeCount"></small></button>
+    </div>
 
     <div class="panel demo">
       <div class="track-wrap" aria-hidden="true">
@@ -255,6 +350,7 @@
         <li>시간 안에 못 쓰면 내 하트가 하나 줄어요.</li>
         <li>철자가 틀리면 벌칙 없이 <b>다시 쓸 수 있어요.</b></li>
         <li>내 학년보다 어려운 단어를 쓰면 <b>보너스 점수</b>!</li>
+        <li>단어를 맞히면 <b>펫 먹이 🍎</b>와 <b>스티커</b>를 받아요.</li>
       </ul>
     </div>
 
@@ -322,6 +418,10 @@
       <p class="newbest" id="resBest"></p>
     </div>
     <div class="panel">
+      <h2>받은 보상</h2>
+      <ul class="rewards" id="resRewards"></ul>
+    </div>
+    <div class="panel">
       <h2>오늘 만난 단어</h2>
       <p class="hint-text">🔊 버튼을 누르면 발음을 들을 수 있어요.</p>
       <ul class="wordlist" id="resList"></ul>
@@ -332,7 +432,57 @@
     </div>
   </section>
 
+  <!-- ===== 상점 ===== -->
+  <section id="shop" class="screen" hidden>
+    <div class="subhead">
+      <button type="button" class="icon-btn" data-back aria-label="처음 화면으로">←</button>
+      <h2>🛒 상점</h2>
+      <span class="wallet-mini">🪙 <b class="coins">0</b> · 💎 <b class="gems">0</b></span>
+    </div>
+    <div class="panel">
+      <h3>게임 아이템</h3>
+      <p class="hint-text">게임마다 아이템을 1개씩 공짜로 줘요. 산 아이템은 그다음에 써요. 아이템은 한 판에 3번까지 쓸 수 있어요.</p>
+      <div class="shop-list" id="shopItems"></div>
+    </div>
+    <div class="panel">
+      <h3>🚃 기차 색깔</h3>
+      <div class="choice-grid" id="shopColors"></div>
+    </div>
+    <div class="panel">
+      <h3>🐾 펫 꾸미기</h3>
+      <div class="choice-grid" id="shopAccs"></div>
+    </div>
+  </section>
+
+  <!-- ===== 스티커북 ===== -->
+  <section id="book" class="screen" hidden>
+    <div class="subhead">
+      <button type="button" class="icon-btn" data-back aria-label="처음 화면으로">←</button>
+      <h2>📒 스티커북</h2>
+      <span class="wallet-mini">💎 <b class="gems">0</b></span>
+    </div>
+    <div class="panel">
+      <div class="tabs" id="bookTabs"></div>
+      <p class="hint-text" id="bookInfo"></p>
+      <div class="stickers" id="bookGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== 배지 ===== -->
+  <section id="badges" class="screen" hidden>
+    <div class="subhead">
+      <button type="button" class="icon-btn" data-back aria-label="처음 화면으로">←</button>
+      <h2>🏅 배지</h2>
+      <span class="wallet-mini">💎 <b class="gems">0</b></span>
+    </div>
+    <div class="panel">
+      <p class="hint-text">배지를 하나 받을 때마다 💎 1개를 받아요.</p>
+      <div class="badge-grid" id="badgeGrid"></div>
+    </div>
+  </section>
+
 </div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
 
 <script>
 /* ============================================================
@@ -740,6 +890,128 @@ const store = {
 const heartStr = n => '❤️'.repeat(Math.max(0, n)) + '🤍'.repeat(Math.max(0, 3 - n));
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
+/* ============================================================
+   2단계: 내 기록 (코인·보석·펫·스티커·배지·출석·오늘의 도전)
+   이 기기(브라우저)에만 저장돼요.
+   ============================================================ */
+const dayStr = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+const today = () => dayStr(new Date());
+/* 받침이 있으면 '으로', 없으면(또는 ㄹ받침) '로' */
+const ro = w => { const c = w.charCodeAt(w.length - 1) - 0xAC00; return c >= 0 && c <= 11171 && c % 28 !== 0 && c % 28 !== 8 ? '으로' : '로'; };
+
+const P = Object.assign({
+  coins: 0, gems: 0, inv: {}, stickers: {}, xp: 0, badges: {}, pages: {},
+  colors: ['red'], color: 'red', accs: [], acc: '',
+  streak: 0, lastDay: '', dailyDay: '', dailyCount: 0,
+  games: 0, wins: 0, hardWins: 0, maxCars: 0, longest: 0, rare: 0,
+}, store.get('wt.profile', {}));
+P.inv = Object.assign({ hint: 0, freeze: 0, shield: 0 }, P.inv);
+const save = () => store.set('wt.profile', P);
+const stickerCount = () => Object.keys(P.stickers).filter(w => DICT[w]).length;
+
+const PET = [
+  { at: 0,   e: '🥚', name: '알' },
+  { at: 10,  e: '🐣', name: '병아리' },
+  { at: 30,  e: '🐥', name: '아기새' },
+  { at: 60,  e: '🐦', name: '파랑새' },
+  { at: 100, e: '🦅', name: '독수리' },
+  { at: 160, e: '🐉', name: '드래곤' },
+];
+function petStage(xp = P.xp) { let i = 0; PET.forEach((st, k) => { if (xp >= st.at) i = k; }); return i; }
+const petEmoji = () => PET[petStage()].e;
+
+const SHOP_ITEMS = [
+  { id: 'hint',   e: '💡', name: '반짝 전구', desc: '정답 첫 두 글자 보기', price: 15 },
+  { id: 'freeze', e: '🧊', name: '얼음 시계', desc: '10초 동안 시간 멈춤', price: 20 },
+  { id: 'shield', e: '🛡️', name: '튼튼 방패', desc: '한 번 틀려도 하트 지키기', price: 25 },
+];
+const COLORS = [
+  { id: 'red',     name: '빨강',   bg: 'var(--red)', ink: 'var(--red-ink)', price: 0 },
+  { id: 'orange',  name: '주황',   bg: '#f08a24', ink: '#ffffff', price: 30 },
+  { id: 'green',   name: '초록',   bg: '#2f9e6e', ink: '#ffffff', price: 30 },
+  { id: 'purple',  name: '보라',   bg: '#8b5cf6', ink: '#ffffff', price: 40 },
+  { id: 'pink',    name: '분홍',   bg: '#ec4899', ink: '#ffffff', price: 40 },
+  { id: 'rainbow', name: '무지개', bg: 'linear-gradient(90deg,#ef4444,#f59e0b,#22c55e,#3b82f6,#8b5cf6)', ink: '#ffffff', gems: 5 },
+];
+const ACCS = [
+  { id: 'ribbon', e: '🎀', name: '리본',     price: 40 },
+  { id: 'hat',    e: '🎩', name: '신사 모자', price: 50 },
+  { id: 'cap',    e: '🧢', name: '야구 모자', price: 50 },
+  { id: 'glass',  e: '🕶️', name: '선글라스', price: 60 },
+  { id: 'crown',  e: '👑', name: '왕관',     gems: 3 },
+  { id: 'star',   e: '🌟', name: '반짝 별',  gems: 4 },
+];
+const priceLabel = x => x.gems ? `💎 ${x.gems}` : `🪙 ${x.price}`;
+const canPay = x => x.gems ? P.gems >= x.gems : P.coins >= x.price;
+function pay(x) { if (x.gems) P.gems -= x.gems; else P.coins -= x.price; }
+
+function applyColor() {
+  const c = COLORS.find(c => c.id === P.color) || COLORS[0];
+  document.documentElement.style.setProperty('--mycar', c.bg);
+  document.documentElement.style.setProperty('--mycar-ink', c.ink);
+}
+
+const MISSIONS = [
+  { text: () => '한 판에 단어 5개 쓰기',          ok: S => S.myWords.length >= 5 },
+  { text: g => `${g <= 2 ? 4 : 5}글자 이상 단어 2개 쓰기`, ok: S => S.myWords.filter(o => o.word.length >= (S.G.g <= 2 ? 4 : 5)).length >= 2 },
+  { text: () => '로봇 이기기',                    ok: S => S.won },
+  { text: () => '아이템 없이 단어 4개 쓰기',      ok: S => S.itemUses === 0 && S.myWords.length >= 4 },
+  { text: () => '빠른 정답 3번 하기',             ok: S => S.fast >= 3 },
+  { text: () => '새 스티커 3장 모으기',           ok: S => S.newStickers.length >= 3 },
+];
+const DAILY_REWARD = 30;
+function todayMission() { let h = 7; for (const ch of today()) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return MISSIONS[h % MISSIONS.length]; }
+const dailyDone = () => P.dailyDay === today();
+
+const BADGES = [
+  { id: 'first_win', e: '🥇', name: '첫 승리',        desc: '로봇 처음 이기기',            ok: () => P.wins >= 1 },
+  { id: 'win10',     e: '🏆', name: '승리 10번',      desc: '로봇 10번 이기기',            ok: () => P.wins >= 10 },
+  { id: 'hard',      e: '😎', name: '로봇 격파',      desc: '어려움 로봇 이기기',          ok: () => P.hardWins >= 1 },
+  { id: 'train10',   e: '🚃', name: '긴 기차',        desc: '한 판에 기차 10칸',           ok: () => P.maxCars >= 10 },
+  { id: 'train20',   e: '🚄', name: '초특급 기차',    desc: '한 판에 기차 20칸',           ok: () => P.maxCars >= 20 },
+  { id: 'st30',      e: '📒', name: '스티커 30장',    desc: '스티커 30장 모으기',          ok: () => stickerCount() >= 30 },
+  { id: 'st100',     e: '📚', name: '스티커 100장',   desc: '스티커 100장 모으기',         ok: () => stickerCount() >= 100 },
+  { id: 'page',      e: '🌈', name: '페이지 완성',    desc: '스티커북 한 페이지 다 채우기', ok: () => Object.keys(P.pages).length >= 1 },
+  { id: 'long',      e: '🦒', name: '긴 단어 박사',   desc: '8글자 이상 단어 쓰기',        ok: () => P.longest >= 8 },
+  { id: 'rare',      e: '🧭', name: '희귀 글자 탐험가', desc: 'Q·X·Z·J·V·Y로 시작하는 단어', ok: () => P.rare >= 1 },
+  { id: 'streak3',   e: '🔥', name: '3일 연속',       desc: '3일 연속 출석',               ok: () => P.streak >= 3 },
+  { id: 'streak7',   e: '🌟', name: '7일 연속',       desc: '7일 연속 출석',               ok: () => P.streak >= 7 },
+  { id: 'daily3',    e: '📅', name: '도전왕',         desc: '오늘의 도전 3번 성공',        ok: () => P.dailyCount >= 3 },
+  { id: 'evolve',    e: '🐣', name: '첫 진화',        desc: '펫 처음 진화시키기',          ok: () => petStage() >= 1 },
+  { id: 'dragon',    e: '🐉', name: '드래곤 조련사',  desc: '펫을 드래곤까지 키우기',      ok: () => petStage() >= 5 },
+];
+function checkBadges() {
+  const got = [];
+  BADGES.forEach(b => { if (!P.badges[b.id] && b.ok()) { P.badges[b.id] = today(); P.gems += 1; got.push(b); } });
+  if (got.length) save();
+  return got;
+}
+
+/* 알림 */
+function toast(html) {
+  const box = document.getElementById('toasts');
+  if (!box) return;
+  const t = document.createElement('div');
+  t.className = 'toast'; t.innerHTML = html;
+  box.append(t);
+  while (box.children.length > 3) box.firstChild.remove();
+  setTimeout(() => t.remove(), 3200);
+}
+
+/* 출석 보상: 하루에 한 번 */
+function checkIn() {
+  const t = today();
+  if (P.lastDay === t) return;
+  const y = new Date(); y.setDate(y.getDate() - 1);
+  P.streak = P.lastDay === dayStr(y) ? P.streak + 1 : 1;
+  P.lastDay = t;
+  P.coins += 10;
+  let msg = '🎁 출석 보상 🪙+10';
+  if (P.streak % 7 === 0) { P.gems += 1; msg += ' 💎+1'; }
+  save();
+  setTimeout(() => toast(`${msg} · 🔥 ${P.streak}일째`), 600);
+}
+
 let soundOn = store.get('wt.sound', true);
 let audioCtx = null;
 function tone(freqs, dur = 0.12, type = 'sine', vol = 0.14) {
@@ -805,6 +1077,7 @@ let selLevel = store.get('wt.level', 'easy');
 const bests = store.get('wt.best', {});
 
 function renderHome() {
+  renderProfile();
   $('#grades').innerHTML = GRADES.map(G => `
     <button type="button" class="grade" data-g="${G.g}" aria-pressed="${G.g === selGrade}">
       <span class="ico">${G.icon}</span>
@@ -826,7 +1099,7 @@ $('#levels').addEventListener('click', e => {
 renderHome();
 
 function show(id) {
-  ['home', 'game', 'result'].forEach(s => { $('#' + s).hidden = s !== id; });
+  ['home', 'game', 'result', 'shop', 'book', 'badges'].forEach(s => { $('#' + s).hidden = s !== id; });
   window.scrollTo(0, 0);
 }
 
@@ -841,7 +1114,8 @@ function newGame() {
     G, pool, level: selLevel,
     used: new Set(), hearts: 3, robotHearts: 3, score: 0,
     turn: 'robot', letter: null, remaining: G.time * 1000, frozenUntil: 0,
-    shield: false, items: { hint: 1, freeze: 1, shield: 1 },
+    shield: false, items: { hint: 1 + P.inv.hint, freeze: 1 + P.inv.freeze, shield: 1 + P.inv.shield },
+    itemUses: 0, fast: 0, newStickers: [], xpGain: 0, won: false, dailyDone: false,
     cars: 0, myWords: [], typed: '', over: false, timers: [],
   };
   $('#track').innerHTML = '';
@@ -911,7 +1185,7 @@ function renderItems() {
     const k = b.dataset.item;
     b.querySelector('.ic').textContent = S.items[k];
     b.classList.toggle('on', k === 'shield' && S.shield);
-    b.disabled = S.items[k] <= 0 || S.turn !== 'player' || S.over;
+    b.disabled = S.items[k] <= 0 || S.itemUses >= 3 || S.turn !== 'player' || S.over;
   });
   $('#passBtn').disabled = S.turn !== 'player' || S.over;
 }
@@ -1036,16 +1310,59 @@ function accept(entry) {
   let pts = entry.word.length * 10;
   const notes = [];
   if (entry.grade > S.G.g) { pts += 20; notes.push('형님 단어 +20'); }
-  if (S.remaining > S.G.time * 1000 * 0.6) { pts += 5; notes.push('빠른 정답 +5'); }
+  if (S.remaining > S.G.time * 1000 * 0.6) { pts += 5; S.fast++; notes.push('빠른 정답 +5'); }
   S.score += pts;
   S.myWords.push(entry);
+  collect(entry, notes);
   addToTrain(entry, 'me');
   renderStatus(); renderItems(); setLetter(null);
   if (S.G.keypad) { S.typed = ''; renderTyped(); } else $('#answerInput').value = '';
   sfx.good(); speak(entry.word);
   say(`${entry.emoji} <span class="en">${entry.word}</span> = ${esc(entry.meaning)}  (+${pts})`,
       notes.length ? '✨ ' + notes.join(' · ') : '칙칙폭폭! 기차가 한 칸 길어졌어요.');
+  checkDaily();
   later(() => robotTurn(nextLetterFor(entry.word)), 1500);
+}
+
+/* 스티커 모으기 + 펫 먹이 주기 */
+function collect(entry, notes) {
+  const before = petStage();
+  P.xp++; S.xpGain++;
+  if (!P.stickers[entry.word]) {
+    P.stickers[entry.word] = 1;
+    S.newStickers.push(entry);
+    notes.push('📒 새 스티커!');
+    const g = entry.grade;
+    if (!P.pages[g] && BY_GRADE[g].every(o => P.stickers[o.word])) {
+      P.pages[g] = today(); P.gems += 3;
+      toast(`🌈 ${g}학년 스티커 페이지 완성! 💎+3`);
+    }
+  }
+  if (entry.word.length > P.longest) P.longest = entry.word.length;
+  if ('qxzjvy'.includes(entry.word[0])) P.rare++;
+  const after = petStage();
+  if (after > before) toast(`${PET[after].e} 펫이 ${PET[after].name}${ro(PET[after].name)} 진화했어요!`);
+  save();
+}
+function checkDaily() {
+  if (!S || S.dailyDone || dailyDone()) return;
+  if (todayMission().ok(S)) {
+    P.dailyDay = today(); P.dailyCount++; P.coins += DAILY_REWARD;
+    S.dailyDone = true; save();
+    toast(`📅 오늘의 도전 성공! 🪙+${DAILY_REWARD}`);
+  }
+}
+function settle(win) {
+  S.won = win;
+  P.games++;
+  if (win) { P.wins++; if (S.level === 'hard') P.hardWins++; }
+  P.maxCars = Math.max(P.maxCars, S.cars);
+  const coins = Math.floor(S.score / 10) + (win ? 20 : 5) + S.newStickers.length * 2;
+  P.coins += coins;
+  save();
+  checkDaily();
+  const badges = checkBadges();
+  return { coins, badges };
 }
 
 function robotChoose(letter) {
@@ -1114,7 +1431,7 @@ function playerFail(kind) {
   S.hearts--;
   renderStatus(); renderItems(); setLetter(null); sfx.bad();
   if (example) speak(example.word);
-  say(kind === 'time' ? '⏰ 시간이 다 됐어요. 괜찮아요!' : '괜찮아요! 다음에 또 해 봐요.', exText, true);
+  say(kind === 'time' ? `⏰ 시간이 다 됐어요. ${petEmoji()} 괜찮아~` : `${petEmoji()} 괜찮아~ 다음에 또 해 봐요!`, exText, true);
   if (S.hearts <= 0) { later(() => endGame(false), 2200); return; }
   later(() => robotStartsNewTrain(false), 2600);
 }
@@ -1124,7 +1441,7 @@ document.querySelector('.items').addEventListener('click', e => {
   const b = e.target.closest('.item');
   if (!b || !S || S.turn !== 'player' || S.over) return;
   const k = b.dataset.item;
-  if (S.items[k] <= 0) return;
+  if (S.items[k] <= 0 || S.itemUses >= 3) return;
   if (k === 'hint') {
     const c = S.pool.filter(o => o.word[0] === S.letter && !S.used.has(o.word));
     if (!c.length) { say('힌트로 보여줄 단어가 없어요.'); return; }
@@ -1139,6 +1456,10 @@ document.querySelector('.items').addEventListener('click', e => {
     say('🛡️ 튼튼 방패 준비 완료!', '한 번 틀려도 하트가 줄지 않아요.');
   }
   S.items[k]--;
+  S.itemUses++;
+  // 공짜 1개를 먼저 쓰고, 그다음 상점에서 산 아이템을 써요
+  if (P.inv[k] > S.items[k]) { P.inv[k] = S.items[k]; save(); }
+  if (S.itemUses >= 3) toast('아이템은 한 판에 3번까지 쓸 수 있어요.');
   sfx.item(); renderItems();
 });
 
@@ -1155,6 +1476,7 @@ function endGame(win, reason) {
   if (S.over) return;
   stopGame();
   if (win) sfx.win();
+  const rw = settle(win);
   const prev = bests[S.G.g] || 0;
   const isBest = S.score > prev;
   if (isBest) { bests[S.G.g] = S.score; store.set('wt.best', bests); }
@@ -1170,6 +1492,14 @@ function endGame(win, reason) {
     <li><span class="em">${o.emoji}</span>
       <span><span class="en">${o.word}</span><br><span class="ko">${esc(o.meaning)}</span></span>
       <button type="button" data-say="${o.word}" aria-label="${o.word} 발음 듣기">🔊</button></li>`).join('');
+  const i = petStage(), nx = PET[i + 1];
+  $('#resRewards').innerHTML = [
+    `<li><span>🪙</span><span>별 코인</span><b>+${rw.coins}</b></li>`,
+    `<li><span>📒</span><span>새 스티커</span><b>${S.newStickers.length}장</b></li>`,
+    `<li><span>${PET[i].e}</span><span>펫 먹이 🍎 ${nx ? `(진화까지 ${nx.at - P.xp}개)` : '(최고 단계!)'}</span><b>+${S.xpGain}</b></li>`,
+    S.dailyDone ? `<li><span>📅</span><span>오늘의 도전 성공</span><b>+${DAILY_REWARD}</b></li>` : '',
+    ...rw.badges.map(b => `<li><span>${b.e}</span><span>새 배지: ${b.name}</span><b>💎+1</b></li>`),
+  ].join('');
   setTimeout(() => show('result'), 900);
 }
 $('#resList').addEventListener('click', e => {
@@ -1179,4 +1509,111 @@ $('#resList').addEventListener('click', e => {
 $('#againBtn').addEventListener('click', newGame);
 $('#homeBtn').addEventListener('click', () => { renderHome(); show('home'); });
 $('#startBtn').addEventListener('click', newGame);
+
+/* ---------- 2단계 화면들 ---------- */
+function renderWallet() {
+  document.querySelectorAll('.coins').forEach(e => { e.textContent = P.coins; });
+  document.querySelectorAll('.gems').forEach(e => { e.textContent = P.gems; });
+}
+function renderProfile() {
+  renderWallet();
+  $('#streak').textContent = P.streak;
+  const i = petStage(), st = PET[i], nx = PET[i + 1];
+  $('#petFace').textContent = st.e;
+  $('#petAcc').textContent = (ACCS.find(a => a.id === P.acc) || {}).e || '';
+  $('#petName').textContent = `내 단어 펫 · ${st.name}`;
+  if (nx) {
+    $('#petBar').style.width = ((P.xp - st.at) / (nx.at - st.at) * 100) + '%';
+    $('#petNext').textContent = `🍎 ${P.xp - st.at} / ${nx.at - st.at} · 다 먹으면 ${nx.e} ${nx.name}${ro(nx.name)} 진화!`;
+  } else {
+    $('#petBar').style.width = '100%';
+    $('#petNext').textContent = '최고 단계까지 키웠어요! 멋져요 ✨';
+  }
+  $('#dailyText').textContent = todayMission().text(selGrade);
+  $('#dailyState').textContent = dailyDone() ? '✅ 성공! 내일 또 만나요' : `성공하면 🪙 +${DAILY_REWARD}`;
+  $('#dailyCard').classList.toggle('done', dailyDone());
+  $('#bookCount').textContent = `${stickerCount()} / ${Object.keys(DICT).length}`;
+  $('#badgeCount').textContent = `${Object.keys(P.badges).length} / ${BADGES.length}`;
+}
+
+function renderShop() {
+  renderWallet();
+  $('#shopItems').innerHTML = SHOP_ITEMS.map(it => `
+    <div class="shop-row"><span class="se">${it.e}</span>
+      <span><b style="font-weight:400">${it.name}</b><small>${it.desc} · 가진 개수 ${P.inv[it.id]}개</small></span>
+      <button type="button" class="buy${canPay(it) ? '' : ' poor'}" data-buy="item:${it.id}">${priceLabel(it)}</button></div>`).join('');
+  $('#shopColors').innerHTML = COLORS.map(c => {
+    const own = P.colors.includes(c.id), using = P.color === c.id;
+    return `<div class="choice"><span class="swatch" style="background:${c.bg}"></span>${c.name}
+      <button type="button" class="buy${using ? ' using' : own ? ' owned' : canPay(c) ? '' : ' poor'}" data-buy="color:${c.id}">${using ? '사용 중' : own ? '고르기' : priceLabel(c)}</button></div>`;
+  }).join('');
+  $('#shopAccs').innerHTML = ACCS.map(a => {
+    const own = P.accs.includes(a.id), using = P.acc === a.id;
+    return `<div class="choice"><span class="ce">${a.e}</span>${a.name}
+      <button type="button" class="buy${using ? ' using' : own ? ' owned' : canPay(a) ? '' : ' poor'}" data-buy="acc:${a.id}">${using ? '벗기' : own ? '씌우기' : priceLabel(a)}</button></div>`;
+  }).join('');
+}
+$('#shop').addEventListener('click', e => {
+  const b = e.target.closest('[data-buy]'); if (!b) return;
+  const [kind, id] = b.dataset.buy.split(':');
+  const poor = x => toast(x.gems ? '💎 보석이 부족해요. 배지를 모으면 받을 수 있어요!' : '🪙 코인이 부족해요. 게임을 하면 모을 수 있어요!');
+  if (kind === 'item') {
+    const it = SHOP_ITEMS.find(x => x.id === id);
+    if (!canPay(it)) return poor(it);
+    pay(it); P.inv[id]++; toast(`${it.e} ${it.name}을(를) 샀어요!`); sfx.item();
+  } else if (kind === 'color') {
+    const c = COLORS.find(x => x.id === id);
+    if (!P.colors.includes(id)) { if (!canPay(c)) return poor(c); pay(c); P.colors.push(id); toast(`🚃 ${c.name} 기차를 샀어요!`); sfx.item(); }
+    P.color = id; applyColor();
+  } else if (kind === 'acc') {
+    const a = ACCS.find(x => x.id === id);
+    if (!P.accs.includes(id)) { if (!canPay(a)) return poor(a); pay(a); P.accs.push(id); toast(`${a.e} ${a.name}을(를) 샀어요!`); sfx.item(); P.acc = id; }
+    else P.acc = P.acc === id ? '' : id;
+  }
+  save(); renderShop();
+});
+
+let bookGrade = selGrade;
+function renderBook() {
+  renderWallet();
+  $('#bookTabs').innerHTML = GRADES.map(G => {
+    const have = BY_GRADE[G.g].filter(o => P.stickers[o.word]).length;
+    return `<button type="button" data-tab="${G.g}" aria-pressed="${G.g === bookGrade}">${G.icon} ${G.g}학년 ${have}/${BY_GRADE[G.g].length}</button>`;
+  }).join('');
+  const list = BY_GRADE[bookGrade];
+  const have = list.filter(o => P.stickers[o.word]).length;
+  $('#bookInfo').innerHTML = P.pages[bookGrade]
+    ? `<span class="gold" style="display:block">🌟 황금 페이지! ${bookGrade}학년 스티커를 모두 모았어요</span>`
+    : `${bookGrade}학년 스티커 ${have}장을 모았어요. 다 모으면 💎 3개! 모은 스티커를 누르면 발음을 들려줘요.`;
+  $('#bookGrid').innerHTML = list.map(o => P.stickers[o.word]
+    ? `<button type="button" class="stk" data-say="${o.word}" data-ko="${esc(o.meaning)}" aria-label="${o.word} ${esc(o.meaning)}"><span>${o.emoji}</span><small>${o.word}</small></button>`
+    : `<div class="stk empty" aria-label="아직 못 모은 스티커"><span>${o.word[0].toUpperCase()}?</span><small>${o.word.length}글자</small></div>`).join('');
+}
+$('#bookTabs').addEventListener('click', e => { const b = e.target.closest('[data-tab]'); if (b) { bookGrade = +b.dataset.tab; renderBook(); } });
+$('#bookGrid').addEventListener('click', e => {
+  const b = e.target.closest('[data-say]'); if (!b) return;
+  const was = soundOn; soundOn = true; speak(b.dataset.say); soundOn = was;
+  toast(`${b.firstElementChild.textContent} <b>${b.dataset.say}</b> = ${b.dataset.ko}`);
+});
+
+function renderBadges() {
+  renderWallet();
+  $('#badgeGrid').innerHTML = BADGES.map(b => `
+    <div class="badge${P.badges[b.id] ? '' : ' locked'}"><span class="be">${b.e}</span><b>${b.name}</b><small>${P.badges[b.id] ? '✅ ' + P.badges[b.id] : b.desc}</small></div>`).join('');
+}
+
+document.querySelector('.menu').addEventListener('click', e => {
+  const b = e.target.closest('[data-go]'); if (!b) return;
+  const id = b.dataset.go;
+  if (id === 'shop') renderShop();
+  if (id === 'book') { bookGrade = selGrade; renderBook(); }
+  if (id === 'badges') renderBadges();
+  show(id);
+});
+document.querySelectorAll('[data-back]').forEach(b => b.addEventListener('click', () => { renderHome(); show('home'); }));
+
+applyColor();
+checkIn();
+checkBadges();
+renderHome();
 </script>
