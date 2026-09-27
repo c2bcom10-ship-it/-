@@ -1,0 +1,17 @@
+{
+  "name": "끝말 배틀",
+  "short_name": "끝말배틀",
+  "description": "폭탄이 터지기 전에 단어를 이어라! 친구와 온라인으로 하는 한글 끝말잇기",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1d1545",
+  "theme_color": "#1d1545",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

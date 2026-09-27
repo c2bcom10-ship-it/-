@@ -1,0 +1,17 @@
+{
+  "name": "Word Train 워드 트레인",
+  "short_name": "워드트레인",
+  "description": "초등 1~6학년 영어 끝말잇기 기차 게임",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#d6ecff",
+  "theme_color": "#e5484d",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
