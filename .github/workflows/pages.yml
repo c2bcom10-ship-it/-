@@ -1,11 +1,13 @@
-# main 브랜치에 올라온 game 폴더를 GitHub Pages 웹사이트로 올려요.
+# main 브랜치의 게임들을 GitHub Pages 웹사이트로 올려요.
+#   주소/            → 끝말 배틀 (korean 폴더)
+#   주소/word-train/ → 영어 Word Train (game 폴더)
 # 처음 한 번은 저장소 Settings → Pages → Source 를 "GitHub Actions"로 바꿔야 해요.
 name: Deploy game to GitHub Pages
 
 on:
   push:
     branches: [main]
-    paths: ['game/**', '.github/workflows/pages.yml']
+    paths: ['game/**', 'korean/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 
 permissions:
@@ -26,8 +28,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      - name: Build site folder
+        run: |
+          mkdir -p _site/word-train
+          cp -r korean/. _site/
+          cp -r game/. _site/word-train/
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: game
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4
