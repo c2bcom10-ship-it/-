@@ -1,0 +1,30 @@
+# 배터리 지킴이 안드로이드 앱을 만들어요(APK).
+# battery 폴더가 바뀌어서 올라오면 자동으로 실행되고,
+# 다 되면 Actions 화면 맨 아래 "Artifacts"에서 APK를 내려받을 수 있어요.
+name: Build Battery Keeper app
+
+on:
+  push:
+    paths: ['battery/**', '.github/workflows/battery-app.yml']
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: battery
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Test and build APK
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon testDebugUnitTest assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: battery-keeper-apk
+          path: battery/app/build/outputs/apk/debug/app-debug.apk

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/percentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="--%"
+            android:textSize="64sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" />
+
+        <Switch
+            android:id="@+id/autoSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="자동 절전 켜기"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/saveAtText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+
+        <SeekBar
+            android:id="@+id/saveAtBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="절전: 밝기 약 30%, 30초 뒤 화면 꺼짐\n강력 절전: 밝기 약 10%, 15초 뒤 화면 꺼짐\n충전기를 꽂으면 원래 설정으로 돌아가요."
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/permissionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp" />
+
+        <Button
+            android:id="@+id/permissionButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="화면 설정 권한 주기" />
+
+        <TextView
+            android:id="@+id/powerSaveText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp" />
+
+        <Button
+            android:id="@+id/batterySaverButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="폰의 절전 모드 설정 열기" />
+    </LinearLayout>
+</ScrollView>
