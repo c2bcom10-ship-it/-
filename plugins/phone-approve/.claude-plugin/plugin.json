@@ -1,0 +1,9 @@
+{
+  "name": "phone-approve",
+  "displayName": "폰으로 승인하기",
+  "version": "1.0.0",
+  "description": "PC 앞에 없어도 폰 알림(ntfy)으로 Claude Code 승인/거부하고, 작업이 끝나면 폰으로 알려줘요.",
+  "author": { "name": "c2bcom10-ship-it" },
+  "repository": "https://github.com/c2bcom10-ship-it/-",
+  "license": "MIT"
+}

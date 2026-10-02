@@ -1,0 +1,12 @@
+{
+  "name": "c2b-tools",
+  "description": "폰으로 Claude Code 승인하기 등 편의 도구",
+  "owner": { "name": "c2bcom10-ship-it" },
+  "plugins": [
+    {
+      "name": "phone-approve",
+      "source": "./plugins/phone-approve",
+      "description": "PC 앞에 없어도 폰 알림으로 승인/거부. 작업 끝나면 폰으로 알림."
+    }
+  ]
+}
