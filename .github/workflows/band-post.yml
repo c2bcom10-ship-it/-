@@ -1,0 +1,42 @@
+# 매일 아침 네이버 밴드에 오늘의 글을 자동으로 올려요.
+# 설명서: band-bot/README.md
+name: 밴드 자동 글쓰기
+
+on:
+  schedule:
+    # 한국 시간 매일 오전 8시 50분 (GitHub 시간은 한국보다 9시간 느려요)
+    # GitHub 사정에 따라 몇 분~수십 분 늦게 올라갈 수 있어요.
+    - cron: '50 23 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: '무엇을 할까요?'
+        type: choice
+        default: 연습 (올리지 않고 보기만)
+        options:
+          - 연습 (올리지 않고 보기만)
+          - 지금 바로 올리기
+          - 내 밴드 목록 보기
+
+permissions:
+  contents: read
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 밴드에 글 올리기
+        env:
+          BAND_ACCESS_TOKEN: ${{ secrets.BAND_ACCESS_TOKEN }}
+          BAND_KEY: ${{ secrets.BAND_KEY }}
+          MODE: ${{ github.event.inputs.mode }}
+        run: |
+          case "$MODE" in
+            "내 밴드 목록 보기") python band-bot/post.py --list-bands ;;
+            "연습 (올리지 않고 보기만)") python band-bot/post.py --dry-run ;;
+            *) python band-bot/post.py ;;
+          esac
