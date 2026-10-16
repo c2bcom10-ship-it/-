@@ -14,8 +14,8 @@
 13,아이폰 eSIM 전환,eSIM,정보,모요,경쟁사 제목에서 확인,A,기존 글 연결,mvno-esim
 14,갤럭시 eSIM 전환,eSIM,정보,모요,경쟁사 제목에서 확인,A,기존 글 연결,mvno-esim
 15,eSIM 유심 동시 사용,eSIM,정보,모요,경쟁사 제목에서 확인,A,기존 글 연결,esim-dual-number
-16,eSIM 해외 로밍,eSIM,정보,모요,경쟁사 제목에서 확인,A,기존 글 연결,mvno-esim
-17,여행 eSIM,eSIM,정보,모요,경쟁사 제목에서 확인,A,기존 글 연결,mvno-esim
+16,eSIM 해외 로밍,eSIM,정보,모요,경쟁사 제목에서 확인,A,6차 새 글 연결,travel-esim-setup
+17,여행 eSIM,eSIM,정보,모요,경쟁사 제목에서 확인,A,6차 새 글 연결,travel-esim-setup
 18,eSIM 지원 기종,eSIM,정보,모요,경쟁사 제목에서 확인,A,기존 글 연결,mvno-esim
 19,eSIM 알뜰폰 지원 여부,eSIM,정보,모요,경쟁사 제목에서 확인,A,기존 글 연결,mvno-esim
 20,eSIM 재난문자,eSIM,정보,모요,경쟁사 제목에서 확인,A,새 글 후보,
@@ -69,8 +69,8 @@
 68,키즈폰 추천,대상별,비교,모요,경쟁사 제목에서 확인,A,기존 글 연결,kids-first-phone-age
 69,아이 첫 스마트폰,대상별,비교,모요,경쟁사 제목에서 확인,A,기존 글 연결,kids-first-phone-age
 70,대학생 폰 추천,대상별,비교,모요,경쟁사 제목에서 확인,A,기존 글 연결,student-phone-guide
-71,군인 요금제,대상별,비교,모요,경쟁사 제목에서 확인,A,새 글 후보,
-72,군인 할인,대상별,비교,모요,경쟁사 제목에서 확인,A,새 글 후보,
+71,군인 요금제,대상별,비교,모요,경쟁사 제목에서 확인,A,6차 새 글 연결,military-phone-plan
+72,군인 할인,대상별,비교,모요,경쟁사 제목에서 확인,A,6차 새 글 연결,military-phone-plan
 73,태블릿 요금제,대상별,비교,모요,경쟁사 제목에서 확인,A,기존 글 연결,tablet-data-plan
 74,데이터 쉐어링 요금제,대상별,비교,모요,경쟁사 제목에서 확인,A,기존 글 연결,tablet-data-plan
 75,스마트워치 요금제,대상별,비교,모요,경쟁사 제목에서 확인,A,기존 글 연결,smartwatch-plan
@@ -86,7 +86,7 @@
 85,KT 로밍,로밍,비교,모요,경쟁사 제목에서 확인,A,기존 글 연결,skt-kt-roaming-guide
 86,LG U+ 로밍,로밍,비교,모요,경쟁사 제목에서 확인,A,기존 글 연결,skt-kt-roaming-guide
 87,알뜰폰 로밍 신청,로밍,비교,모요,경쟁사 제목에서 확인,A,기존 글 연결,mvno-roaming
-88,로밍 vs 유심 vs eSIM,로밍,비교,모요,경쟁사 제목에서 확인,A,기존 글 연결,mvno-esim
+88,로밍 vs 유심 vs eSIM,로밍,비교,모요,경쟁사 제목에서 확인,A,6차 새 글 연결,travel-data-options
 89,아이폰 폴드 vs 갤럭시 Z폴드8,모델 비교,비교,아정당,경쟁사 제목에서 확인,A,기존 글 연결,galaxy-fold8-vs-iphone-duo
 90,갤럭시 Z폴드8 vs 갤럭시 Z플립8,모델 비교,비교,아정당,경쟁사 제목에서 확인,A,기존 글 연결,galaxy-fold8-buy-guide
 91,아이폰17 싸게 사는 법,모델별 구매,구매,공통,경쟁사 제목에서 확인,A,기존 글 연결,iphone-17-cheap-buy
@@ -188,9 +188,9 @@
 187,알뜰폰 카드할인,알뜰폰 기본,정보,공통,경쟁사 제목에서 확인,A,기존 글 연결,mvno-card-discount
 188,알뜰폰 평생요금제,알뜰폰 기본,정보,공통,경쟁사 제목에서 확인,A,기존 글 연결,mvno-lifetime-plan
 189,알뜰폰 0원 요금제,알뜰폰 기본,정보,공통,경쟁사 제목에서 확인,A,기존 글 연결,mvno-zero-won-plan
-190,알뜰폰 할인 종료 후 요금,알뜰폰 기본,정보,공통,경쟁사 제목에서 확인,A,기존 글 연결,mvno-plan-change
-191,알뜰폰 7개월 후 요금,알뜰폰 기본,정보,공통,경쟁사 제목에서 확인,A,기존 글 연결,mvno-plan-change
-192,알뜰폰 6개월마다 갈아타기,알뜰폰 기본,정보,공통,경쟁사 제목에서 확인,A,기존 글 연결,mvno-plan-change
+190,알뜰폰 할인 종료 후 요금,알뜰폰 기본,정보,공통,경쟁사 제목에서 확인,A,6차 새 글 연결,mvno-promo-end-price
+191,알뜰폰 7개월 후 요금,알뜰폰 기본,정보,공통,경쟁사 제목에서 확인,A,6차 새 글 연결,mvno-promo-end-price
+192,알뜰폰 6개월마다 갈아타기,알뜰폰 기본,정보,공통,경쟁사 제목에서 확인,A,6차 새 글 연결,mvno-promo-end-price
 193,알뜰폰 요금제 갈아타기,알뜰폰 기본,정보,공통,경쟁사 제목에서 확인,A,기존 글 연결,mvno-plan-change
 194,알뜰폰 요금제 변경,알뜰폰 기본,정보,공통,경쟁사 제목에서 확인,A,기존 글 연결,mvno-plan-change
 195,알뜰폰 요금제 추천,알뜰폰 기본,정보,공통,경쟁사 제목에서 확인,A,기존 글 연결,mvno-plan-compare
@@ -257,8 +257,8 @@
 256,중고폰 구매 체크리스트,중고폰,정보,아정당,경쟁사 제목에서 확인,A,기존 글 연결,used-refurbished-phone
 257,IMEI 도난폰 확인,중고폰,정보,아정당,경쟁사 제목에서 확인,A,기존 글 연결,used-refurbished-phone
 258,중고폰 출시 한달 후 구매,중고폰,정보,아정당,경쟁사 제목에서 확인,A,기존 글 연결,used-refurbished-phone
-259,중고폰 등급,중고폰,정보,아정당,경쟁사 제목에서 확인,A,기존 글 연결,used-refurbished-phone
-260,리퍼폰,중고폰,정보,아정당,경쟁사 제목에서 확인,A,기존 글 연결,used-refurbished-phone
+259,중고폰 등급,중고폰,정보,아정당,경쟁사 제목에서 확인,A,6차 새 글 연결,used-phone-grade-guide
+260,리퍼폰,중고폰,정보,아정당,경쟁사 제목에서 확인,A,6차 새 글 연결,used-phone-grade-guide
 261,공기계 구매,중고폰,정보,아정당,경쟁사 제목에서 확인,A,기존 글 연결,unlocked-blank-phone
 262,중고폰 직거래 vs 업체,중고폰,정보,아정당,경쟁사 제목에서 확인,A,기존 글 연결,sell-used-phone-options
 263,중고폰 ATM,중고폰,정보,아정당,경쟁사 제목에서 확인,A,기존 글 연결,used-phone-atm
@@ -423,26 +423,26 @@
 422,LG U+ 알뜰폰 결합,결합할인,비교,아정당,확장 변형,B,기존 글 연결,mvno-internet-bundle
 423,LG U+ 결합 조건,결합할인,비교,아정당,확장 변형,B,기존 글 연결,family-bundle-discount
 424,LG U+ 결합 해지,결합할인,비교,아정당,확장 변형,B,기존 글 연결,early-termination-penalty
-425,일본 로밍 vs eSIM,로밍,비교,모요,확장 변형,B,기존 글 보강,skt-kt-roaming-guide
-426,일본 여행 데이터,로밍,비교,모요,확장 변형,B,새 글 후보,
-427,미국 로밍 vs eSIM,로밍,비교,모요,확장 변형,B,기존 글 보강,skt-kt-roaming-guide
-428,미국 여행 데이터,로밍,비교,모요,확장 변형,B,새 글 후보,
-429,중국 로밍 vs eSIM,로밍,비교,모요,확장 변형,B,기존 글 보강,skt-kt-roaming-guide
-430,중국 여행 데이터,로밍,비교,모요,확장 변형,B,새 글 후보,
-431,베트남 로밍 vs eSIM,로밍,비교,모요,확장 변형,B,기존 글 보강,skt-kt-roaming-guide
-432,베트남 여행 데이터,로밍,비교,모요,확장 변형,B,새 글 후보,
-433,태국 로밍 vs eSIM,로밍,비교,모요,확장 변형,B,기존 글 보강,skt-kt-roaming-guide
-434,태국 여행 데이터,로밍,비교,모요,확장 변형,B,새 글 후보,
-435,유럽 로밍 vs eSIM,로밍,비교,모요,확장 변형,B,기존 글 보강,skt-kt-roaming-guide
-436,유럽 여행 데이터,로밍,비교,모요,확장 변형,B,새 글 후보,
-437,대만 로밍 vs eSIM,로밍,비교,모요,확장 변형,B,기존 글 보강,skt-kt-roaming-guide
-438,대만 여행 데이터,로밍,비교,모요,확장 변형,B,새 글 후보,
-439,필리핀 로밍 vs eSIM,로밍,비교,모요,확장 변형,B,기존 글 보강,skt-kt-roaming-guide
-440,필리핀 여행 데이터,로밍,비교,모요,확장 변형,B,새 글 후보,
-441,호주 로밍 vs eSIM,로밍,비교,모요,확장 변형,B,기존 글 보강,skt-kt-roaming-guide
-442,호주 여행 데이터,로밍,비교,모요,확장 변형,B,새 글 후보,
-443,괌 로밍 vs eSIM,로밍,비교,모요,확장 변형,B,기존 글 보강,skt-kt-roaming-guide
-444,괌 여행 데이터,로밍,비교,모요,확장 변형,B,새 글 후보,
+425,일본 로밍 vs eSIM,로밍,비교,모요,확장 변형,B,6차 새 글 연결,travel-data-options
+426,일본 여행 데이터,로밍,비교,모요,확장 변형,B,6차 새 글 연결,travel-data-options
+427,미국 로밍 vs eSIM,로밍,비교,모요,확장 변형,B,6차 새 글 연결,travel-data-options
+428,미국 여행 데이터,로밍,비교,모요,확장 변형,B,6차 새 글 연결,travel-data-options
+429,중국 로밍 vs eSIM,로밍,비교,모요,확장 변형,B,6차 새 글 연결,travel-data-options
+430,중국 여행 데이터,로밍,비교,모요,확장 변형,B,6차 새 글 연결,travel-data-options
+431,베트남 로밍 vs eSIM,로밍,비교,모요,확장 변형,B,6차 새 글 연결,travel-data-options
+432,베트남 여행 데이터,로밍,비교,모요,확장 변형,B,6차 새 글 연결,travel-data-options
+433,태국 로밍 vs eSIM,로밍,비교,모요,확장 변형,B,6차 새 글 연결,travel-data-options
+434,태국 여행 데이터,로밍,비교,모요,확장 변형,B,6차 새 글 연결,travel-data-options
+435,유럽 로밍 vs eSIM,로밍,비교,모요,확장 변형,B,6차 새 글 연결,travel-data-options
+436,유럽 여행 데이터,로밍,비교,모요,확장 변형,B,6차 새 글 연결,travel-data-options
+437,대만 로밍 vs eSIM,로밍,비교,모요,확장 변형,B,6차 새 글 연결,travel-data-options
+438,대만 여행 데이터,로밍,비교,모요,확장 변형,B,6차 새 글 연결,travel-data-options
+439,필리핀 로밍 vs eSIM,로밍,비교,모요,확장 변형,B,6차 새 글 연결,travel-data-options
+440,필리핀 여행 데이터,로밍,비교,모요,확장 변형,B,6차 새 글 연결,travel-data-options
+441,호주 로밍 vs eSIM,로밍,비교,모요,확장 변형,B,6차 새 글 연결,travel-data-options
+442,호주 여행 데이터,로밍,비교,모요,확장 변형,B,6차 새 글 연결,travel-data-options
+443,괌 로밍 vs eSIM,로밍,비교,모요,확장 변형,B,6차 새 글 연결,travel-data-options
+444,괌 여행 데이터,로밍,비교,모요,확장 변형,B,6차 새 글 연결,travel-data-options
 445,아이폰17 vs 아이폰17 프로,모델 비교,비교,아정당,확장 변형,B,기존 글 연결,iphone-17-vs-17-pro
 446,아이폰17 아이폰17 프로 차이,모델 비교,비교,아정당,확장 변형,B,기존 글 연결,iphone-17-vs-17-pro
 447,아이폰17 프로 vs 아이폰17 프로맥스,모델 비교,비교,아정당,확장 변형,B,기존 글 연결,iphone-17-pro-max-buy-now
@@ -621,42 +621,42 @@
 620,LG U+망 알뜰폰 인터넷 결합,알뜰폰 기본,비교,공통,확장 변형,B,기존 글 연결,mvno-internet-bundle
 621,LG U+망 알뜰폰 속도,알뜰폰 기본,비교,공통,확장 변형,B,기존 글 연결,mvno-quality
 622,LG U+망 알뜰폰 로밍,알뜰폰 기본,비교,공통,확장 변형,B,기존 글 연결,mvno-roaming
-623,알뜰폰 1GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-624,1GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-625,1GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-626,알뜰폰 2GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-627,2GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-628,2GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-629,알뜰폰 5GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 연결,mvno-5g-plans
-630,5GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-631,5GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-632,알뜰폰 7GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-633,7GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-634,7GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-635,알뜰폰 10GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-636,10GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-637,10GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-638,알뜰폰 11GB 매일 2GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-639,11GB 매일 2GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-640,11GB 매일 2GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-641,알뜰폰 15GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 연결,mvno-5g-plans
-642,15GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-643,15GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-644,알뜰폰 20GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-645,20GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-646,20GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-647,알뜰폰 30GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-648,30GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-649,30GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-650,알뜰폰 50GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-651,50GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-652,50GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-653,알뜰폰 71GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-654,71GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-655,71GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-656,알뜰폰 100GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-657,100GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-658,100GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
+623,알뜰폰 1GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-low-data-plans
+624,1GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-low-data-plans
+625,1GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-low-data-plans
+626,알뜰폰 2GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-low-data-plans
+627,2GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-low-data-plans
+628,2GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-low-data-plans
+629,알뜰폰 5GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-low-data-plans
+630,5GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-low-data-plans
+631,5GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-low-data-plans
+632,알뜰폰 7GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-mid-data-plans
+633,7GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-mid-data-plans
+634,7GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-mid-data-plans
+635,알뜰폰 10GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-mid-data-plans
+636,10GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-mid-data-plans
+637,10GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-mid-data-plans
+638,알뜰폰 11GB 매일 2GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-mid-data-plans
+639,11GB 매일 2GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-mid-data-plans
+640,11GB 매일 2GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-mid-data-plans
+641,알뜰폰 15GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-mid-data-plans
+642,15GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-mid-data-plans
+643,15GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-mid-data-plans
+644,알뜰폰 20GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-mid-data-plans
+645,20GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-mid-data-plans
+646,20GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-mid-data-plans
+647,알뜰폰 30GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-large-data-plans
+648,30GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-large-data-plans
+649,30GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-large-data-plans
+650,알뜰폰 50GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-large-data-plans
+651,50GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-large-data-plans
+652,50GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-large-data-plans
+653,알뜰폰 71GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-large-data-plans
+654,71GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-large-data-plans
+655,71GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-large-data-plans
+656,알뜰폰 100GB 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-large-data-plans
+657,100GB 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-large-data-plans
+658,100GB 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-large-data-plans
 659,알뜰폰 데이터 무제한 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 연결,mvno-unlimited-plans
 660,데이터 무제한 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
 661,데이터 무제한 요금제 비교,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
@@ -674,8 +674,8 @@
 673,어르신 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
 674,알뜰폰 65세 이상 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
 675,65세 이상 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-676,알뜰폰 군인 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-677,군인 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
+676,알뜰폰 군인 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,military-phone-plan
+677,군인 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,military-phone-plan
 678,알뜰폰 외국인 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 연결,mvno-signup-steps
 679,외국인 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
 680,알뜰폰 1인 가구 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
@@ -694,25 +694,25 @@
 693,유튜브 많이 보는 사람 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
 694,알뜰폰 통화 많은 사람 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
 695,통화 많은 사람 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-696,알뜰폰 데이터 적게 쓰는 사람 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
-697,데이터 적게 쓰는 사람 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 보강,mvno-plan-compare
+696,알뜰폰 데이터 적게 쓰는 사람 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-low-data-plans
+697,데이터 적게 쓰는 사람 요금제 추천,알뜰폰 요금제,비교,모요,확장 변형,B,6차 새 글 연결,mvno-low-data-plans
 698,1Mbps 무제한 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 연결,mvno-unlimited-plans
 699,3Mbps 무제한 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 연결,mvno-unlimited-plans
 700,5Mbps 무제한 요금제,알뜰폰 요금제,비교,모요,확장 변형,B,기존 글 연결,mvno-unlimited-plans
 701,아이폰17 출고가,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-17-buy-now
 702,아이폰17 공통지원금,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-17-buy-now
-703,아이폰17 중고 시세,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-17-buy-now
+703,아이폰17 중고 시세,모델별 구매,정보,공통,확장 변형,C,6차 새 글 연결,iphone-used-price-check
 704,아이폰17 용량 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-17-buy-now
 705,아이폰17 프로 출고가,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-17-vs-17-pro
 706,아이폰17 프로 공통지원금,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-17-vs-17-pro
-707,아이폰17 프로 중고 시세,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-17-vs-17-pro
+707,아이폰17 프로 중고 시세,모델별 구매,정보,공통,확장 변형,C,6차 새 글 연결,iphone-used-price-check
 708,아이폰17 프로 용량 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-17-vs-17-pro
 709,아이폰17 프로맥스 가격,모델별 구매,정보,공통,확장 변형,C,기존 글 연결,iphone-17-pro-max-buy-now
 710,아이폰17 프로맥스 출고가,모델별 구매,정보,공통,확장 변형,C,기존 글 연결,iphone-17-pro-max-buy-now
 711,아이폰17 프로맥스 공통지원금,모델별 구매,정보,공통,확장 변형,C,기존 글 연결,iphone-17-pro-max-buy-now
 712,아이폰17 프로맥스 정품 확인,모델별 구매,정보,공통,확장 변형,C,기존 글 연결,iphone-17-pro-max-buy-now
 713,아이폰17 프로맥스 미개봉 구매 주의,모델별 구매,정보,공통,확장 변형,C,기존 글 연결,unopened-iphone
-714,아이폰17 프로맥스 중고 시세,모델별 구매,정보,공통,확장 변형,C,기존 글 연결,iphone-17-pro-max-buy-now
+714,아이폰17 프로맥스 중고 시세,모델별 구매,정보,공통,확장 변형,C,6차 새 글 연결,iphone-used-price-check
 715,아이폰17 프로맥스 색상 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 연결,iphone-17-pro-max-buy-now
 716,아이폰17 프로맥스 용량 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 연결,iphone-17-pro-max-buy-now
 717,아이폰 에어 가격,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-air-guide
@@ -720,7 +720,7 @@
 719,아이폰 에어 공통지원금,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-air-guide
 720,아이폰 에어 정품 확인,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-air-guide
 721,아이폰 에어 미개봉 구매 주의,모델별 구매,정보,공통,확장 변형,C,기존 글 연결,unopened-iphone
-722,아이폰 에어 중고 시세,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-air-guide
+722,아이폰 에어 중고 시세,모델별 구매,정보,공통,확장 변형,C,6차 새 글 연결,iphone-used-price-check
 723,아이폰 에어 색상 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-air-guide
 724,아이폰 에어 용량 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-air-guide
 725,아이폰17e 가격,모델별 구매,정보,공통,확장 변형,C,기존 글 연결,iphone-17e-guide
@@ -728,56 +728,56 @@
 727,아이폰17e 공통지원금,모델별 구매,정보,공통,확장 변형,C,기존 글 연결,iphone-17e-guide
 728,아이폰17e 정품 확인,모델별 구매,정보,공통,확장 변형,C,기존 글 연결,iphone-17e-guide
 729,아이폰17e 미개봉 구매 주의,모델별 구매,정보,공통,확장 변형,C,기존 글 연결,unopened-iphone
-730,아이폰17e 중고 시세,모델별 구매,정보,공통,확장 변형,C,기존 글 연결,iphone-17e-guide
+730,아이폰17e 중고 시세,모델별 구매,정보,공통,확장 변형,C,6차 새 글 연결,iphone-used-price-check
 731,아이폰17e 색상 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 연결,iphone-17e-guide
 732,아이폰17e 용량 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 연결,iphone-17e-guide
 733,아이폰18 프로 출고가,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-18-pro-buy-checklist
 734,아이폰18 프로 공통지원금,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-18-pro-buy-checklist
-735,아이폰18 프로 중고 시세,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-18-pro-buy-checklist
+735,아이폰18 프로 중고 시세,모델별 구매,정보,공통,확장 변형,C,6차 새 글 연결,iphone-used-price-check
 736,아이폰18 프로 용량 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-18-pro-buy-checklist
 737,아이폰18 프로맥스 가격,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-18-pro-buy-checklist
 738,아이폰18 프로맥스 출고가,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-18-pro-buy-checklist
 739,아이폰18 프로맥스 공통지원금,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-18-pro-buy-checklist
 740,아이폰18 프로맥스 정품 확인,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-18-pro-buy-checklist
 741,아이폰18 프로맥스 미개봉 구매 주의,모델별 구매,정보,공통,확장 변형,C,기존 글 연결,unopened-iphone
-742,아이폰18 프로맥스 중고 시세,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-18-pro-buy-checklist
+742,아이폰18 프로맥스 중고 시세,모델별 구매,정보,공통,확장 변형,C,6차 새 글 연결,iphone-used-price-check
 743,아이폰18 프로맥스 색상 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-18-pro-buy-checklist
 744,아이폰18 프로맥스 용량 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,iphone-18-pro-buy-checklist
 745,갤럭시 S26 출고가,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-series-guide
 746,갤럭시 S26 공통지원금,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-series-guide
-747,갤럭시 S26 중고 시세,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-series-guide
+747,갤럭시 S26 중고 시세,모델별 구매,정보,공통,확장 변형,C,6차 새 글 연결,galaxy-used-price-check
 748,갤럭시 S26 용량 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-series-guide
 749,갤럭시 S26 플러스 가격,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-plus-guide
 750,갤럭시 S26 플러스 출고가,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-plus-guide
 751,갤럭시 S26 플러스 공통지원금,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-plus-guide
-752,갤럭시 S26 플러스 중고 시세,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-plus-guide
+752,갤럭시 S26 플러스 중고 시세,모델별 구매,정보,공통,확장 변형,C,6차 새 글 연결,galaxy-used-price-check
 753,갤럭시 S26 플러스 색상 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-plus-guide
 754,갤럭시 S26 플러스 용량 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-plus-guide
 755,갤럭시 S26 울트라 가격,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-ultra-buy-guide
 756,갤럭시 S26 울트라 출고가,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-ultra-buy-guide
 757,갤럭시 S26 울트라 공통지원금,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-ultra-buy-guide
-758,갤럭시 S26 울트라 중고 시세,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-ultra-buy-guide
+758,갤럭시 S26 울트라 중고 시세,모델별 구매,정보,공통,확장 변형,C,6차 새 글 연결,galaxy-used-price-check
 759,갤럭시 S26 울트라 색상 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-ultra-buy-guide
 760,갤럭시 S26 울트라 용량 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-ultra-buy-guide
 761,갤럭시 S26 FE 가격,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-fe-guide
 762,갤럭시 S26 FE 출고가,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-fe-guide
 763,갤럭시 S26 FE 공통지원금,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-fe-guide
-764,갤럭시 S26 FE 중고 시세,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-fe-guide
+764,갤럭시 S26 FE 중고 시세,모델별 구매,정보,공통,확장 변형,C,6차 새 글 연결,galaxy-used-price-check
 765,갤럭시 S26 FE 색상 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-fe-guide
 766,갤럭시 S26 FE 용량 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-s26-fe-guide
 767,갤럭시 Z폴드8 출고가,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-fold8-buy-guide
 768,갤럭시 Z폴드8 공통지원금,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-fold8-buy-guide
-769,갤럭시 Z폴드8 중고 시세,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-fold8-buy-guide
+769,갤럭시 Z폴드8 중고 시세,모델별 구매,정보,공통,확장 변형,C,6차 새 글 연결,foldable-used-check
 770,갤럭시 Z폴드8 용량 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-fold8-buy-guide
 771,갤럭시 Z폴드8 울트라 가격,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-fold8-buy-guide
 772,갤럭시 Z폴드8 울트라 출고가,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-fold8-buy-guide
 773,갤럭시 Z폴드8 울트라 공통지원금,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-fold8-buy-guide
-774,갤럭시 Z폴드8 울트라 중고 시세,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-fold8-buy-guide
+774,갤럭시 Z폴드8 울트라 중고 시세,모델별 구매,정보,공통,확장 변형,C,6차 새 글 연결,foldable-used-check
 775,갤럭시 Z폴드8 울트라 색상 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-fold8-buy-guide
 776,갤럭시 Z폴드8 울트라 용량 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-fold8-buy-guide
 777,갤럭시 Z플립8 출고가,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-foldable-buying-guide
 778,갤럭시 Z플립8 공통지원금,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-foldable-buying-guide
-779,갤럭시 Z플립8 중고 시세,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-foldable-buying-guide
+779,갤럭시 Z플립8 중고 시세,모델별 구매,정보,공통,확장 변형,C,6차 새 글 연결,foldable-used-check
 780,갤럭시 Z플립8 용량 추천,모델별 구매,정보,공통,확장 변형,C,기존 글 보강,galaxy-foldable-buying-guide
 781,U+유모바일 요금제,알뜰폰 사업자,탐색,모요,확장 변형,C,새 글 후보,
 782,U+유모바일 고객센터,알뜰폰 사업자,탐색,모요,확장 변형,C,기존 글 보강,mvno-customer-center
@@ -902,60 +902,60 @@
 901,1Mbps 속도 유튜브 가능,알뜰폰 요금제,정보,모요,확장 변형,C,기존 글 연결,mvno-unlimited-plans
 902,3Mbps 속도 유튜브 가능,알뜰폰 요금제,정보,모요,확장 변형,C,기존 글 연결,mvno-unlimited-plans
 903,5Mbps 속도 유튜브 가능,알뜰폰 요금제,정보,모요,확장 변형,C,기존 글 연결,mvno-unlimited-plans
-904,아이폰13 중고 시세,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-905,아이폰13 중고 매입가,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
+904,아이폰13 중고 시세,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,iphone-used-price-check
+905,아이폰13 중고 매입가,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,iphone-used-price-check
 906,아이폰13 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,기존 글 연결,used-refurbished-phone
-907,아이폰14 중고 시세,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-908,아이폰14 중고 매입가,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
+907,아이폰14 중고 시세,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,iphone-used-price-check
+908,아이폰14 중고 매입가,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,iphone-used-price-check
 909,아이폰14 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,기존 글 연결,used-refurbished-phone
-910,아이폰14 프로 중고 시세,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-911,아이폰14 프로 중고 매입가,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
+910,아이폰14 프로 중고 시세,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,iphone-used-price-check
+911,아이폰14 프로 중고 매입가,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,iphone-used-price-check
 912,아이폰14 프로 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,기존 글 연결,used-refurbished-phone
-913,아이폰15 중고 시세,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-914,아이폰15 중고 매입가,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
+913,아이폰15 중고 시세,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,iphone-used-price-check
+914,아이폰15 중고 매입가,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,iphone-used-price-check
 915,아이폰15 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,기존 글 연결,used-refurbished-phone
-916,아이폰15 프로 중고 시세,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-917,아이폰15 프로 중고 매입가,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
+916,아이폰15 프로 중고 시세,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,iphone-used-price-check
+917,아이폰15 프로 중고 매입가,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,iphone-used-price-check
 918,아이폰15 프로 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,기존 글 연결,used-refurbished-phone
-919,아이폰16 중고 시세,중고폰,정보,아정당,확장 변형,C,기존 글 보강,iphone-16-buy-now
-920,아이폰16 중고 매입가,중고폰,정보,아정당,확장 변형,C,기존 글 보강,iphone-16-buy-now
+919,아이폰16 중고 시세,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,iphone-used-price-check
+920,아이폰16 중고 매입가,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,iphone-used-price-check
 921,아이폰16 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,기존 글 보강,iphone-16-buy-now
-922,아이폰16 프로 중고 시세,중고폰,정보,아정당,확장 변형,C,기존 글 보강,iphone-16-buy-now
-923,아이폰16 프로 중고 매입가,중고폰,정보,아정당,확장 변형,C,기존 글 보강,iphone-16-buy-now
+922,아이폰16 프로 중고 시세,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,iphone-used-price-check
+923,아이폰16 프로 중고 매입가,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,iphone-used-price-check
 924,아이폰16 프로 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,기존 글 보강,iphone-16-buy-now
-925,갤럭시 S23 중고 시세,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-926,갤럭시 S23 중고 매입가,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
+925,갤럭시 S23 중고 시세,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,galaxy-used-price-check
+926,갤럭시 S23 중고 매입가,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,galaxy-used-price-check
 927,갤럭시 S23 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,기존 글 연결,used-refurbished-phone
-928,갤럭시 S24 중고 시세,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-929,갤럭시 S24 중고 매입가,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
+928,갤럭시 S24 중고 시세,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,galaxy-used-price-check
+929,갤럭시 S24 중고 매입가,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,galaxy-used-price-check
 930,갤럭시 S24 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,기존 글 연결,used-refurbished-phone
-931,갤럭시 S24 울트라 중고 시세,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-932,갤럭시 S24 울트라 중고 매입가,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
+931,갤럭시 S24 울트라 중고 시세,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,galaxy-used-price-check
+932,갤럭시 S24 울트라 중고 매입가,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,galaxy-used-price-check
 933,갤럭시 S24 울트라 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,기존 글 연결,used-refurbished-phone
-934,갤럭시 S25 중고 시세,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-935,갤럭시 S25 중고 매입가,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
+934,갤럭시 S25 중고 시세,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,galaxy-used-price-check
+935,갤럭시 S25 중고 매입가,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,galaxy-used-price-check
 936,갤럭시 S25 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,기존 글 연결,used-refurbished-phone
-937,갤럭시 S25 울트라 중고 시세,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-938,갤럭시 S25 울트라 중고 매입가,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
+937,갤럭시 S25 울트라 중고 시세,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,galaxy-used-price-check
+938,갤럭시 S25 울트라 중고 매입가,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,galaxy-used-price-check
 939,갤럭시 S25 울트라 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,기존 글 연결,used-refurbished-phone
-940,갤럭시 Z폴드5 중고 시세,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-941,갤럭시 Z폴드5 중고 매입가,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-942,갤럭시 Z폴드5 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,기존 글 연결,used-refurbished-phone
-943,갤럭시 Z폴드6 중고 시세,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-944,갤럭시 Z폴드6 중고 매입가,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-945,갤럭시 Z폴드6 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,기존 글 연결,used-refurbished-phone
-946,갤럭시 Z폴드7 중고 시세,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-947,갤럭시 Z폴드7 중고 매입가,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-948,갤럭시 Z폴드7 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,기존 글 연결,used-refurbished-phone
-949,갤럭시 Z플립5 중고 시세,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-950,갤럭시 Z플립5 중고 매입가,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-951,갤럭시 Z플립5 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,기존 글 연결,used-refurbished-phone
-952,갤럭시 Z플립6 중고 시세,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-953,갤럭시 Z플립6 중고 매입가,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-954,갤럭시 Z플립6 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,기존 글 연결,used-refurbished-phone
-955,갤럭시 Z플립7 중고 시세,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-956,갤럭시 Z플립7 중고 매입가,중고폰,정보,아정당,확장 변형,C,기존 글 보강,sell-used-phone-options
-957,갤럭시 Z플립7 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,기존 글 연결,used-refurbished-phone
+940,갤럭시 Z폴드5 중고 시세,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,foldable-used-check
+941,갤럭시 Z폴드5 중고 매입가,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,foldable-used-check
+942,갤럭시 Z폴드5 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,foldable-used-check
+943,갤럭시 Z폴드6 중고 시세,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,foldable-used-check
+944,갤럭시 Z폴드6 중고 매입가,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,foldable-used-check
+945,갤럭시 Z폴드6 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,foldable-used-check
+946,갤럭시 Z폴드7 중고 시세,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,foldable-used-check
+947,갤럭시 Z폴드7 중고 매입가,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,foldable-used-check
+948,갤럭시 Z폴드7 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,foldable-used-check
+949,갤럭시 Z플립5 중고 시세,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,foldable-used-check
+950,갤럭시 Z플립5 중고 매입가,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,foldable-used-check
+951,갤럭시 Z플립5 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,foldable-used-check
+952,갤럭시 Z플립6 중고 시세,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,foldable-used-check
+953,갤럭시 Z플립6 중고 매입가,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,foldable-used-check
+954,갤럭시 Z플립6 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,foldable-used-check
+955,갤럭시 Z플립7 중고 시세,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,foldable-used-check
+956,갤럭시 Z플립7 중고 매입가,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,foldable-used-check
+957,갤럭시 Z플립7 중고 구매 주의,중고폰,정보,아정당,확장 변형,C,6차 새 글 연결,foldable-used-check
 958,아이폰18 스펙 유출,출시·루머,정보,아정당,확장 변형,C,기존 글 연결,iphone-18-lineup-guide
 959,아이폰18 디자인 루머,출시·루머,정보,아정당,확장 변형,C,기존 글 연결,iphone-18-lineup-guide
 960,아이폰18 사전예약 일정,출시·루머,정보,아정당,확장 변형,C,기존 글 연결,iphone-18-lineup-guide
